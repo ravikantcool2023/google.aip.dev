@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en-US" class="glue-flexbox">
+  <head>
+    <title>AIP-213: Common components</title>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,maximum-scale=2">
+    <link href="//fonts.googleapis.com/css?family=Roboto:100,300,400,500,700|Google+Sans:400,500|Product+Sans:400&amp;lang=en" rel="stylesheet"></link>
+    <link rel="shortcut icon" href="/assets/favicon.ico">
+    <link rel="stylesheet" type="text/css" media="screen" href="//www.gstatic.com/glue/v22_1/glue.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/css/style.css?v=45e6bdc1">
+    <link rel="stylesheet" type="text/css" media="print" href="/assets/css/print.css?v=45e6bdc1">
+    <script type="text/javascript" src="//code.jquery.com/jquery-3.4.0.min.js"></script>
+    <script type="text/javascript" src="//www.gstatic.com/glue/latest/glue-detect.min.js"></script>
+    <script type="text/javascript">
+      $('html').css('visibility', 'hidden');
+      $.when($.ready).then(() => {
+        $('html').css('visibility', 'visible');
+      });
+    </script>
+    <script type="text/javascript" src="/assets/js/global.js?v=45e6bdc1"></script>
+    
+<script type="text/javascript" src="/assets/js/syntax.js"></script>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-140054909-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-140054909-1');
+    </script>
+  </head>
+  <body>
+    <!-- prettier-ignore -->
+<header class="glue-header glue-header--single">
+  <div class="glue-header__bar glue-header__bar--desktop glue-header__drawer">
+    <div class="glue-header__tier">
+      <!-- LOCK up-->
+      <div class="glue-header__container">
+        <div class="glue-header__lock-up">
+          <div class="glue-header__logo">
+            <a class="glue-header__logo-link" href="/" title="Google">
+              <div class="glue-header__logo-container">
+                <svg role="img" aria-hidden="true" class="glue-header__logo-svg">
+                <use xlink:href="/assets/images/glue-icons.svg#google-color-logo"></use>
+                </svg>
+              </div>
+              <p class="glue-header__logo--product">AIPs</p>
+            </a>
+          </div>
+          <a href="#page-content" class="glue-header__skip-content">
+            <p class="glue-header__skip-content-text">Jump to Content</p>
+          </a>
+        </div>
+      </div>
+      <!-- LINK BAR-->
+      <div class="glue-header__container glue-header__container--flex-auto">
+        <nav class="glue-header__link-bar">
+          <ul id="list-1" class="glue-header__list">
+            
+              
+                <li class="glue-header__item">
+                  <a class="glue-header__link" href="/general" aria-level="1">Browse AIPs</a>
+                </li>
+              
+            
+              
+                <li class="glue-header__item">
+                  <a class="glue-header__link" href="/news" aria-level="1">News</a>
+                </li>
+              
+            
+              
+                <li class="glue-header__item">
+                  <a class="glue-header__link" href="/faq" aria-level="1">FAQ</a>
+                </li>
+              
+            
+              
+                <li class="glue-header__item">
+                  <a class="glue-header__link" href="/contributing" aria-level="1">Contributing</a>
+                </li>
+              
+            
+              
+                <li class="glue-header__item">
+                  <a class="glue-header__link" href="https://linter.aip.dev/" target="_blank" aria-level="1">
+                    API Linter
+                    <svg role="img" class="glue-icon glue-icon--18px">
+                      <use xlink:href="/assets/images/glue-icons.svg#open-in-new"></use>
+                    </svg>
+                  </a>
+                </li>
+              
+            
+          </ul>
+        </nav>
+      </div>
+      <!-- CTA-->
+      <div class="glue-header__container glue-header__container--cta">
+        <div class="glue-header__cta">
+        <div class="glue-sitesearch">
+          <form method="GET" action="/search">
+          <label for="q">Search this site</label>
+          <input class="glue-sitesearch__input" type="text" name="q" id="q"
+            placeholder="Search AIPs">
+          <button type="submit" class="glue-button glue-sitesearch__submit" title="Submit">
+            <svg role="img" class="glue-icon glue-icon--24px">
+            <use xlink:href="/assets/images/glue-icons.svg#search"></use>
+            </svg>
+          </button>
+          </form>
+        </div>
+        <a href="https://github.com/aip-dev/google.aip.dev" target="_blank" class="glue-button glue-button--high-emphasis">
+          <img src="/assets/images/github.png" class="github-logo">
+          View on GitHub
+        </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Mobile header placeholder -->
+  <div class="glue-header__bar glue-header__bar--mobile">
+    <div class="glue-header__tier">
+      <!-- LOCK up-->
+      <div class="glue-header__container">
+        <div class="glue-header__lock-up">
+          <div class="glue-header__hamburger glue-header__hamburger--first-tier">
+            <div class="glue-header__hamburger-wrapper">
+              <button type="button" class="glue-header__drawer-toggle-btn"
+                aria-controls="drawer" aria-expanded="false" aria-label="Open the navigation drawer">
+                <svg role="img" class="glue-icon glue-icon--24px"><use xlink:href="/assets/images/glue-icons.svg#menu"></use></svg>
+              </button>
+            </div>
+          </div>
+          <div class="glue-header__logo">
+            <a class="glue-header__logo-link" href="/" title="Google">
+              <div class="glue-header__logo-container">
+                <svg role="img" aria-hidden="true" class="glue-header__logo-svg">
+                  <use xlink:href="/assets/images/glue-icons.svg#google-color-logo"></use>
+                </svg>
+              </div>
+              <p class="glue-header__logo--product">AIPs</p>
+            </a>
+          </div>
+          <!-- SKIP -->
+          <a href="#page-content" class="glue-header__skip-content">
+            <p class="glue-header__skip-content-text">Jump to Content</p>
+          </a>
+        </div>
+      </div>
+      <!-- CTA -->
+      <div class="glue-header__container">
+        <div class="glue-header__cta">
+        <a href="https://github.com/aip-dev/google.aip.dev" class="glue-button glue-button--high-emphasis">
+          <img src="/assets/images/github.png" class="github-logo">
+          View on GitHub
+        </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="glue-header__drawer-backdrop"></div>
+</header>
+    <div class="glue-page">
+      
+      <main role="main" id="page-content">
+        
+<nav id="aip-nav" class="docs-component-nav">
+  <ul class="nav-list">
+    <li class="nav-item nav-item-header">AIPs by Scope</li>
+    <li class="nav-item">
+      <a href="/general">General</a>
+    </li>
+    <li class="nav-item">
+      <a href="/cloud">Google Cloud Platform</a>
+    </li>
+    <li class="nav-item">
+      <a href="/auth">Auth</a>
+    </li>
+    <li class="nav-item">
+      <a href="/client-libraries">Client libraries</a>
+    </li>
+    <li class="nav-item">
+      <a href="/apps">GSuite</a>
+    </li>
+    <li class="nav-item">
+      <a href="/aog">Actions on Google</a>
+    </li>
+    <li class="nav-item nav-item-header">AIPs</li>
+    <li class="nav-item">
+      <a href="/1">
+        <span class="aip-number">1</span>
+        AIP Purpose and Guidelines
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/2">
+        <span class="aip-number">2</span>
+        AIP Numbering
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/3">
+        <span class="aip-number">3</span>
+        AIP Versioning
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/8">
+        <span class="aip-number">8</span>
+        AIP Style and Guidance
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/9">
+        <span class="aip-number">9</span>
+        Glossary
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/100">
+        <span class="aip-number">100</span>
+        API Design Review FAQ
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/111">
+        <span class="aip-number">111</span>
+        Planes
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/121">
+        <span class="aip-number">121</span>
+        Resource-oriented design
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/122">
+        <span class="aip-number">122</span>
+        Resource names
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/123">
+        <span class="aip-number">123</span>
+        Resource types
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/124">
+        <span class="aip-number">124</span>
+        Resource association
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/126">
+        <span class="aip-number">126</span>
+        Enumerations
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/127">
+        <span class="aip-number">127</span>
+        HTTP and gRPC Transcoding
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/128">
+        <span class="aip-number">128</span>
+        Declarative-friendly interfaces
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/129">
+        <span class="aip-number">129</span>
+        Server-Modified Values and Defaults
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/130">
+        <span class="aip-number">130</span>
+        Methods
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/131">
+        <span class="aip-number">131</span>
+        Standard methods: Get
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/132">
+        <span class="aip-number">132</span>
+        Standard methods: List
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/133">
+        <span class="aip-number">133</span>
+        Standard methods: Create
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/134">
+        <span class="aip-number">134</span>
+        Standard methods: Update
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/135">
+        <span class="aip-number">135</span>
+        Standard methods: Delete
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/136">
+        <span class="aip-number">136</span>
+        Custom methods
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/140">
+        <span class="aip-number">140</span>
+        Field names
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/141">
+        <span class="aip-number">141</span>
+        Quantities
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/142">
+        <span class="aip-number">142</span>
+        Time and duration
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/143">
+        <span class="aip-number">143</span>
+        Standardized codes
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/144">
+        <span class="aip-number">144</span>
+        Repeated fields
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/145">
+        <span class="aip-number">145</span>
+        Ranges
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/146">
+        <span class="aip-number">146</span>
+        Generic fields
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/147">
+        <span class="aip-number">147</span>
+        Sensitive fields
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/148">
+        <span class="aip-number">148</span>
+        Standard fields
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/149">
+        <span class="aip-number">149</span>
+        Unset field values
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/151">
+        <span class="aip-number">151</span>
+        Long-running operations
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/152">
+        <span class="aip-number">152</span>
+        Jobs
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/153">
+        <span class="aip-number">153</span>
+        Import and export
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/154">
+        <span class="aip-number">154</span>
+        Resource freshness validation
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/155">
+        <span class="aip-number">155</span>
+        Request identification
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/156">
+        <span class="aip-number">156</span>
+        Singleton resources
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/157">
+        <span class="aip-number">157</span>
+        Partial responses
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/158">
+        <span class="aip-number">158</span>
+        Pagination
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/159">
+        <span class="aip-number">159</span>
+        Reading across collections
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/160">
+        <span class="aip-number">160</span>
+        Filtering
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/161">
+        <span class="aip-number">161</span>
+        Field masks
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/162">
+        <span class="aip-number">162</span>
+        Resource Revisions
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/163">
+        <span class="aip-number">163</span>
+        Change validation
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/164">
+        <span class="aip-number">164</span>
+        Soft delete
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/165">
+        <span class="aip-number">165</span>
+        Criteria-based delete
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/180">
+        <span class="aip-number">180</span>
+        Backwards compatibility
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/181">
+        <span class="aip-number">181</span>
+        Stability levels
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/182">
+        <span class="aip-number">182</span>
+        External software dependencies
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/191">
+        <span class="aip-number">191</span>
+        File and directory structure
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/192">
+        <span class="aip-number">192</span>
+        Documentation
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/193">
+        <span class="aip-number">193</span>
+        Errors
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/194">
+        <span class="aip-number">194</span>
+        Automatic retry configuration
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/200">
+        <span class="aip-number">200</span>
+        Precedent
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/202">
+        <span class="aip-number">202</span>
+        Fields
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/203">
+        <span class="aip-number">203</span>
+        Field behavior documentation
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/205">
+        <span class="aip-number">205</span>
+        Beta-blocking changes
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/210">
+        <span class="aip-number">210</span>
+        Unicode
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/211">
+        <span class="aip-number">211</span>
+        Authorization checks
+      </a>
+    </li>
+    <li class="nav-item nav-item-active">
+      <a href="/213">
+        <span class="aip-number">213</span>
+        Common components
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/214">
+        <span class="aip-number">214</span>
+        Resource expiration
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/215">
+        <span class="aip-number">215</span>
+        API-specific protos
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/216">
+        <span class="aip-number">216</span>
+        States
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/217">
+        <span class="aip-number">217</span>
+        Unreachable resources
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/231">
+        <span class="aip-number">231</span>
+        Batch methods: Get
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/233">
+        <span class="aip-number">233</span>
+        Batch methods: Create
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/234">
+        <span class="aip-number">234</span>
+        Batch methods: Update
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/235">
+        <span class="aip-number">235</span>
+        Batch methods: Delete
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/236">
+        <span class="aip-number">236</span>
+        Policy preview
+      </a>
+    </li>
+    </ul>
+</nav>
+<section id="jump-content">
+          
+<aside id="aip-sidebar" class="docs-component-sidebar">
+  <table id="aip-summary">
+    <tr><th colspan="2">Common components</th></tr>
+    <tr><td>Number</td><td>213</td></tr>
+    <tr><td>Permalink</td><td><a href="https://google.aip.dev/213">google.aip.dev/213</a></td></tr>
+    <tr><td>State</td><td>Approved</td></tr>
+    <tr><td>Created</td><td>2018-08-17</td></tr>
+    <tr><td>Updated</td><td>2018-08-17</td></tr>
+  </table>
+
+  <section id="aip-toc" class="docs-component-sidebar-toc">
+    <div class="toc"><span class="toctitle">Contents</span><ul>
+<li><a href="#guidance">Guidance</a></li>
+<li><a href="#existing-global-common-components">Existing global common components</a><ul>
+<li><a href="#protobuf-types">Protobuf types</a></li>
+<li><a href="#api-types">API Types</a></li>
+<li><a href="#adding-to-common-protos">Adding to common protos</a></li>
+</ul>
+</li>
+<li><a href="#existing-organization-specific-common-component-packages">Existing organization-specific common component packages</a></li>
+<li><a href="#non-conformant-common-component-packages">Non-conformant common component packages</a></li>
+<li><a href="#rationale">Rationale</a></li>
+<li><a href="#changelog">Changelog</a></li>
+</ul>
+</div>
+
+  </section>
+
+  <section class="docs-component-sidebar-actions">
+    <ul>
+      <li><a href="https://github.com/aip-dev/google.aip.dev/issues/">File Bug</a></li>
+      <li><a href="https://github.com/aip-dev/google.aip.dev/blob/master/aip/general/0213.md">View source</a></li>
+      <li><a href="https://github.com/aip-dev/google.aip.dev/edit/master/aip/general/0213.md">Edit this page</a></li>
+    </ul>
+  </section>
+</aside>
+<section id="aip-main" class="docs-component-main">
+  <section class="section-breadcrumbs">
+  <nav
+    class="glue-breadcrumbs glue-mod-mt-std glue-mod-mb-std"
+    aria-label="You are here."
+  >
+    <ol class="glue-breadcrumbs__list aip-breadcrumbs">
+      <li class="glue-breadcrumbs__item" aria-level="1">
+        <a class="glue-breadcrumbs__link" href="/">
+          API Improvement Proposals
+        </a>
+      </li>
+      
+      <li class="glue-breadcrumbs__item" aria-level="2">
+        <a class="glue-breadcrumbs__link" href="/general">
+          General AIPs
+        </a>
+      </li>
+      
+      <li class="glue-breadcrumbs__item glue-breadcrumbs__item--active"
+          aria-level="3">
+        Common components
+      </li>
+    </ol>
+  </nav>
+</section>
+  
+  <h4 class="aip-number">AIP-213</h4>
+  <h1 id="common-components">Common components</h1>
+<p>As specified in <a href="/215">AIP-215</a>, APIs must be self-contained except for the use
+of "common component" packages which are intended for use by multiple APIs.</p>
+<p>There are two kinds of common component packages:</p>
+<ul>
+<li>Organization-specific common components, covering organization-specific
+  concepts such as a "viewport" in Maps.</li>
+<li>Global common components which are generic (i.e. not domain-specific),
+  such as "timestamp" or "postal address".</li>
+</ul>
+<p>Where it is safe to share a single representation across multiple APIs,
+common components can make it easier for clients to interact with those APIs.
+Concept-specific client code can be written once, and messages can be used from
+the response of one API in the request of another without clunky copying, for
+example.</p>
+<p>This benefit comes with significant restrictions and limitations, however,
+and should not be attempted lightly.</p>
+<p>Note that even if the <em>domain</em> of a component is common, the requirements of
+a component may be organization-specific. For example, some organizations may
+have particular requirements of how financial values are represented, leading
+to multiple finance-oriented organization-specific common components - because
+any global common component would either not meet the organization-specific
+requirements, or be too complex for general use.</p>
+<h2 id="guidance">Guidance</h2>
+<ul>
+<li>Organization-wide common component packages <strong>must</strong> end with <code>.type</code>, e.g.
+  <code>google.geo.type</code> or <code>google.shopping.type</code>.</li>
+<li>Organizations <strong>must</strong> consult the API design team before creating a new
+  organization-wide common component package.</li>
+<li>Organization-wide common component packages <strong>must</strong> be published in <a href="https://github.com/googleapis/googleapis">the
+  <code>googleapis</code> repository</a>.</li>
+<li>Organizations creating and publishing a new organization-wide common component
+  package <strong>must</strong> update this AIP to include it in the
+  <a href="#existing-organization-specific-common-component-packages">list below</a>.</li>
+<li>Organizations <strong>must not</strong> define generic components in organization-specific
+  common component packages, instead preferring global common components.</li>
+<li>Common components <strong>must not</strong> be "moved" (that is, deleted from one common
+  component package and added to a different one) from an organization-specific
+  common component package to a global common component package or vice versa.<ul>
+<li>A common component <strong>may</strong> be copied from an organization-specific common
+  component package to a global common component package (without deleting the
+  original component) if it is found to be more widely-applicable than
+  originally expected.</li>
+</ul>
+</li>
+<li>Fields <strong>should not</strong> be added to existing messages.</li>
+<li>Values <strong>should not</strong> be added to existing enums.</li>
+<li>Fields <strong>must not</strong> be removed from existing messages.</li>
+<li>Values <strong>must not</strong> be removed from existing enums.</li>
+<li>While documentation <strong>may</strong> be clarified, it <strong>should not</strong> change the
+  meanings of existing values, including the validity of any given message
+  or set of messages.</li>
+<li>New proto messages and enums <strong>may</strong> be added to common component packages.<ul>
+<li>API teams  <strong>should</strong> allow sufficient time for propagation to clients
+  before using the new messages and enums in their APIs. Fields may take some
+  time for any changes to propagate through publication to client libraries
+  and other surfaces.</li>
+<li>API teams <strong>should</strong> consult widely within their organization, and ideally
+  with the API design team, before adding a new message or enum, due to the
+  limitations listed above.</li>
+</ul>
+</li>
+</ul>
+<h2 id="existing-global-common-components">Existing global common components</h2>
+<p>The global common components, which public-facing protos for an API <strong>may</strong> safely
+import, are as follows:</p>
+<ul>
+<li><a href="https://github.com/googleapis/googleapis/blob/master/google/api"><code>google.api.*</code></a> (but <em>not</em> subpackages of <code>google.api</code>)</li>
+<li><a href="https://github.com/googleapis/googleapis/blob/master/google/longrunning/operations.proto"><code>google.longrunning.Operation</code></a></li>
+<li><a href="https://github.com/protocolbuffers/protobuf/tree/master/src/google/protobuf"><code>google.protobuf.*</code></a></li>
+<li><a href="https://github.com/googleapis/googleapis/blob/master/google/rpc/"><code>google.rpc.*</code></a></li>
+<li><a href="https://github.com/googleapis/googleapis/tree/master/google/type"><code>google.type.*</code></a></li>
+</ul>
+<p>Note that some common components may have internal-only fields. APIs <strong>should</strong>
+generally only rely on fields which have been
+<a href="https://github.com/googleapis/googleapis">released into open source</a>.</p>
+<p>Google APIs <strong>may</strong> also import <a href="https://github.com/googleapis/googleapis/tree/master/google/iam/v1"><code>google.iam.v1.*</code></a>, which provides the
+IAM messages used throughout Google.</p>
+<!-- prettier-ignore -->
+<p><strong>Note:</strong> Many APIs also import components from other packages for internal-only
+use (e.g. to apply visibility labels or provide instructions to internal
+infrastructure). This is acceptable provided that the <em>public</em> components do not
+contain such references.</p>
+<h3 id="protobuf-types">Protobuf types</h3>
+<p>The <code>google.protobuf</code> package is somewhat special in that it is shipped with
+protocol buffers itself, rather than with API tooling. (For most API designers,
+this should be an implementation detail).</p>
+<p>This package includes a small library of types useful for representing common
+programming language constructs:</p>
+<ul>
+<li><a href="https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/duration.proto"><code>google.protobuf.Duration</code></a>: Durations, with nanosecond-level
+  precision. The protobuf runtime provides helper functions to convert to and
+  from language-native duration objects where applicable (such as Python's
+  <a href="https://docs.python.org/3/library/datetime.html#datetime.timedelta"><code>timedelta</code></a>).</li>
+<li><a href="https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/struct.proto"><code>google.protobuf.Struct</code></a>: JSON-like structures (a dictionary of
+  primitives, lists, and other dictionaries). The protobuf runtime provides
+  helper functions in most languages to convert struct objects to and from
+  JSON.</li>
+<li><a href="https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/timestamp.proto"><code>google.protobuf.Timestamp</code></a>: Timestamps, with nanosecond-level
+  precision. The protobuf runtime provides helper functions in most languages
+  to convert to and from language-native timestamp objects (such as Python's
+  <a href="https://docs.python.org/3/library/datetime.html#datetime.datetime"><code>datetime</code></a>).</li>
+</ul>
+<!-- prettier-ignore-start -->
+<!-- prettier-ignore-end -->
+
+<h3 id="api-types">API Types</h3>
+<p>The <code>google.type</code> package provides a "standard library" of types useful for
+representing common concepts in APIs. While types are added from time to time
+and the definitive list is always <a href="https://github.com/googleapis/googleapis/tree/master/google/type">the code</a>, several types deserve note:</p>
+<ul>
+<li><a href="https://github.com/googleapis/googleapis/blob/master/google/type/color.proto"><code>google.type.Color</code></a>: RGB or RGBA colors.</li>
+<li><a href="https://github.com/googleapis/googleapis/blob/master/google/type/date.proto"><code>google.type.Date</code></a>: Calendar dates, with no time or time zone
+  component.</li>
+<li><a href="https://github.com/googleapis/googleapis/blob/master/google/type/dayofweek.proto"><code>google.type.DayOfWeek</code></a>: The day of the week, with no other
+  date, time, or time zone component.</li>
+<li><a href="https://github.com/googleapis/googleapis/blob/master/google/type/latlng.proto"><code>google.type.LatLng</code></a>: Geographic coordinates.</li>
+<li><a href="https://github.com/googleapis/googleapis/blob/master/google/type/money.proto"><code>google.type.Money</code></a>: Currency.</li>
+<li><a href="https://github.com/googleapis/googleapis/blob/master/google/type/postal_address.proto"><code>google.type.PostalAddress</code></a>: Postal addresses in most
+  countries.</li>
+<li><a href="https://github.com/googleapis/googleapis/blob/master/google/type/timeofday.proto"><code>google.type.TimeOfDay</code></a>: Wall-clock time, with no date or time
+  zone component.</li>
+</ul>
+<!-- prettier-ignore-start -->
+<!-- prettier-ignore-end -->
+
+<h3 id="adding-to-common-protos">Adding to common protos</h3>
+<p>Occasionally, it may be useful to add protos to these packages or to add to the
+list of commonly-available protos. In order to do this, <a href="https://github.com/googleapis/aip/issues">open an issue</a> on
+the AIP repository in GitHub, noting the guidelines above.</p>
+<h2 id="existing-organization-specific-common-component-packages">Existing organization-specific common component packages</h2>
+<p>The following organization-specific common component packages exist and conform with the above guidance:</p>
+<ul>
+<li><a href="https://github.com/googleapis/googleapis/tree/master/google/apps/script/type"><code>google.apps.script.type</code></a>
+  Common component package for Google Apps Script.</li>
+<li><a href="https://github.com/googleapis/googleapis/tree/master/google/geo/type"><code>google.geo.type</code></a>
+  Common component package for Google Maps and the Geo organization.</li>
+<li><a href="https://github.com/googleapis/googleapis/tree/master/google/actions/type"><code>google.actions.type</code></a>
+  Common component package for Actions on Google APIs.</li>
+</ul>
+<h2 id="non-conformant-common-component-packages">Non-conformant common component packages</h2>
+<p>The following common component packages exist, but do not conform with the above guidance,
+and do not form a precedent for further such packages.</p>
+<ul>
+<li><a href="https://github.com/googleapis/googleapis/tree/master/google/cloud/common"><code>google.cloud.common</code></a>:
+  This does not conform to the requirement for the package name to end in <code>.type</code>. (This would otherwise
+  be acceptable, and this package should be considered as the Cloud common component package.)</li>
+<li><a href="https://github.com/googleapis/googleapis/tree/master/google/logging/type"><code>google.logging.type</code></a>:
+  This appears to be API-specific, although it's used from multiple APIs; some aspects should probably
+  be global or in a Cloud common component package.</li>
+<li><a href="https://github.com/googleapis/googleapis/tree/master/google/cloud/workflows/type"><code>google.cloud.workflows.type</code></a>:
+  API-specific types.</li>
+<li><a href="https://github.com/googleapis/googleapis/tree/master/google/cloud/oslogin/common"><code>google.cloud.oslogin.common</code></a>:
+  API-specific types, and a non-conformant name.</li>
+<li><a href="https://github.com/googleapis/googleapis/tree/master/google/identity/accesscontextmanager/type"><code>google.identity.accesscontextmanager.type</code></a>:
+  API-specific types.</li>
+<li><a href="https://github.com/googleapis/googleapis/tree/master/google/networking/trafficdirector/type"><code>google.networking.trafficdirector.type</code></a>:
+  API-specific types.</li>
+</ul>
+<h2 id="rationale">Rationale</h2>
+<p>Common components are effectively unversioned: APIs evolve independently of
+each other, both in terms of definition and implementation. A change such as
+adding a field is backward-compatible and predictable in specific APIs, and the
+API team can ensure that the server implementation is available before the API
+definition is published. By contrast, a change in a common component would
+effectively be universally available even if most API implementations did not
+take it into account.</p>
+<p>Adding a new message or enum is backward-compatible, as it does not affect
+existing APIs that may import other messages or enums from the same common
+component package.</p>
+<p>Consultation with the API design team is required for global common components
+and suggested for organization-specific common components as the border between
+"generic" and "organization-specific" is a gray area; some generic <em>concepts</em>
+have organization-specific use cases which surface through the components.</p>
+<h2 id="changelog">Changelog</h2>
+<ul>
+<li><strong>2023-06-27</strong>: Restructured AIPs 215 and 213 for clarity, and introduced the
+  concept of organization-wide common protos more formally.</li>
+<li><strong>2018-08-17</strong>: Initial AIP written.</li>
+</ul>
+  <footer>
+  Except as otherwise noted, the content of this page is licensed under the
+  <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons
+  Attribution 4.0 License</a>, and code samples are licensed under the
+  <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a>.
+  <span class="no-print">For details, see <a href="/licensing">content
+  licensing</a>.</span>
+</footer>
+</section>
+
+        </section>
+      </main>
+      
+    </div>
+    <script src="//www.gstatic.com/external_hosted/hammerjs/v2_0_2/hammer.min.js"></script>
+    <script src="//www.gstatic.com/glue/v22_1/glue-vanilla.min.js"></script>
+    <script type="text/javascript">
+      const headerElement = document.querySelector('.glue-header');
+      if (headerElement) {
+        new window.glue.ui.header.Header(headerElement);
+      }
+    </script>
+  </body>
+</html>

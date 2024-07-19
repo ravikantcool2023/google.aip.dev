@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en-US" class="glue-flexbox">
+  <head>
+    <title>AIP-4110: Application Default Credentials</title>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,maximum-scale=2">
+    <link href="//fonts.googleapis.com/css?family=Roboto:100,300,400,500,700|Google+Sans:400,500|Product+Sans:400&amp;lang=en" rel="stylesheet"></link>
+    <link rel="shortcut icon" href="/assets/favicon.ico">
+    <link rel="stylesheet" type="text/css" media="screen" href="//www.gstatic.com/glue/v22_1/glue.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/css/style.css?v=45e6bdc1">
+    <link rel="stylesheet" type="text/css" media="print" href="/assets/css/print.css?v=45e6bdc1">
+    <script type="text/javascript" src="//code.jquery.com/jquery-3.4.0.min.js"></script>
+    <script type="text/javascript" src="//www.gstatic.com/glue/latest/glue-detect.min.js"></script>
+    <script type="text/javascript">
+      $('html').css('visibility', 'hidden');
+      $.when($.ready).then(() => {
+        $('html').css('visibility', 'visible');
+      });
+    </script>
+    <script type="text/javascript" src="/assets/js/global.js?v=45e6bdc1"></script>
+    
+<script type="text/javascript" src="/assets/js/syntax.js"></script>
+<script type="text/javascript" src="/assets/js/graphviz/viz.js?v=45e6bdc1"></script>
+<script type="text/javascript" src="/assets/js/graphviz/lite.render.js?v=45e6bdc1"></script>
+<script type="text/javascript" src="/assets/js/aip/aip-graphviz.js?v=45e6bdc1"></script>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-140054909-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-140054909-1');
+    </script>
+  </head>
+  <body>
+    <!-- prettier-ignore -->
+<header class="glue-header glue-header--single">
+  <div class="glue-header__bar glue-header__bar--desktop glue-header__drawer">
+    <div class="glue-header__tier">
+      <!-- LOCK up-->
+      <div class="glue-header__container">
+        <div class="glue-header__lock-up">
+          <div class="glue-header__logo">
+            <a class="glue-header__logo-link" href="/" title="Google">
+              <div class="glue-header__logo-container">
+                <svg role="img" aria-hidden="true" class="glue-header__logo-svg">
+                <use xlink:href="/assets/images/glue-icons.svg#google-color-logo"></use>
+                </svg>
+              </div>
+              <p class="glue-header__logo--product">AIPs</p>
+            </a>
+          </div>
+          <a href="#page-content" class="glue-header__skip-content">
+            <p class="glue-header__skip-content-text">Jump to Content</p>
+          </a>
+        </div>
+      </div>
+      <!-- LINK BAR-->
+      <div class="glue-header__container glue-header__container--flex-auto">
+        <nav class="glue-header__link-bar">
+          <ul id="list-1" class="glue-header__list">
+            
+              
+                <li class="glue-header__item">
+                  <a class="glue-header__link" href="/general" aria-level="1">Browse AIPs</a>
+                </li>
+              
+            
+              
+                <li class="glue-header__item">
+                  <a class="glue-header__link" href="/news" aria-level="1">News</a>
+                </li>
+              
+            
+              
+                <li class="glue-header__item">
+                  <a class="glue-header__link" href="/faq" aria-level="1">FAQ</a>
+                </li>
+              
+            
+              
+                <li class="glue-header__item">
+                  <a class="glue-header__link" href="/contributing" aria-level="1">Contributing</a>
+                </li>
+              
+            
+              
+                <li class="glue-header__item">
+                  <a class="glue-header__link" href="https://linter.aip.dev/" target="_blank" aria-level="1">
+                    API Linter
+                    <svg role="img" class="glue-icon glue-icon--18px">
+                      <use xlink:href="/assets/images/glue-icons.svg#open-in-new"></use>
+                    </svg>
+                  </a>
+                </li>
+              
+            
+          </ul>
+        </nav>
+      </div>
+      <!-- CTA-->
+      <div class="glue-header__container glue-header__container--cta">
+        <div class="glue-header__cta">
+        <div class="glue-sitesearch">
+          <form method="GET" action="/search">
+          <label for="q">Search this site</label>
+          <input class="glue-sitesearch__input" type="text" name="q" id="q"
+            placeholder="Search AIPs">
+          <button type="submit" class="glue-button glue-sitesearch__submit" title="Submit">
+            <svg role="img" class="glue-icon glue-icon--24px">
+            <use xlink:href="/assets/images/glue-icons.svg#search"></use>
+            </svg>
+          </button>
+          </form>
+        </div>
+        <a href="https://github.com/aip-dev/google.aip.dev" target="_blank" class="glue-button glue-button--high-emphasis">
+          <img src="/assets/images/github.png" class="github-logo">
+          View on GitHub
+        </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Mobile header placeholder -->
+  <div class="glue-header__bar glue-header__bar--mobile">
+    <div class="glue-header__tier">
+      <!-- LOCK up-->
+      <div class="glue-header__container">
+        <div class="glue-header__lock-up">
+          <div class="glue-header__hamburger glue-header__hamburger--first-tier">
+            <div class="glue-header__hamburger-wrapper">
+              <button type="button" class="glue-header__drawer-toggle-btn"
+                aria-controls="drawer" aria-expanded="false" aria-label="Open the navigation drawer">
+                <svg role="img" class="glue-icon glue-icon--24px"><use xlink:href="/assets/images/glue-icons.svg#menu"></use></svg>
+              </button>
+            </div>
+          </div>
+          <div class="glue-header__logo">
+            <a class="glue-header__logo-link" href="/" title="Google">
+              <div class="glue-header__logo-container">
+                <svg role="img" aria-hidden="true" class="glue-header__logo-svg">
+                  <use xlink:href="/assets/images/glue-icons.svg#google-color-logo"></use>
+                </svg>
+              </div>
+              <p class="glue-header__logo--product">AIPs</p>
+            </a>
+          </div>
+          <!-- SKIP -->
+          <a href="#page-content" class="glue-header__skip-content">
+            <p class="glue-header__skip-content-text">Jump to Content</p>
+          </a>
+        </div>
+      </div>
+      <!-- CTA -->
+      <div class="glue-header__container">
+        <div class="glue-header__cta">
+        <a href="https://github.com/aip-dev/google.aip.dev" class="glue-button glue-button--high-emphasis">
+          <img src="/assets/images/github.png" class="github-logo">
+          View on GitHub
+        </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="glue-header__drawer-backdrop"></div>
+</header>
+    <div class="glue-page">
+      
+      <main role="main" id="page-content">
+        
+<nav id="aip-nav" class="docs-component-nav">
+  <ul class="nav-list">
+    <li class="nav-item nav-item-header">AIPs by Scope</li>
+    <li class="nav-item">
+      <a href="/general">General</a>
+    </li>
+    <li class="nav-item">
+      <a href="/cloud">Google Cloud Platform</a>
+    </li>
+    <li class="nav-item">
+      <a href="/auth">Auth</a>
+    </li>
+    <li class="nav-item">
+      <a href="/client-libraries">Client libraries</a>
+    </li>
+    <li class="nav-item">
+      <a href="/apps">GSuite</a>
+    </li>
+    <li class="nav-item">
+      <a href="/aog">Actions on Google</a>
+    </li>
+    <li class="nav-item nav-item-header">AIPs</li>
+    <li class="nav-item nav-item-active">
+      <a href="/4110">
+        <span class="aip-number">4110</span>
+        Application Default Credentials
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/4111">
+        <span class="aip-number">4111</span>
+        Self-signed JWT
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/4112">
+        <span class="aip-number">4112</span>
+        Service Account Keys
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/4113">
+        <span class="aip-number">4113</span>
+        gcloud CLI Integration
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/4114">
+        <span class="aip-number">4114</span>
+        Device Certificate Authentication via Mutual TLS
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/4115">
+        <span class="aip-number">4115</span>
+        Default Credentials For Google Cloud Virtual Environments
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/4116">
+        <span class="aip-number">4116</span>
+        Identity Tokens
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/4117">
+        <span class="aip-number">4117</span>
+        External Account Credentials (Workload Identity Federation)
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/4118">
+        <span class="aip-number">4118</span>
+        Mutual Authentication Using Workload Credentials
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/4119">
+        <span class="aip-number">4119</span>
+        mTLS Token Binding
+      </a>
+    </li>
+    </ul>
+</nav>
+<section id="jump-content">
+          
+<aside id="aip-sidebar" class="docs-component-sidebar">
+  <table id="aip-summary">
+    <tr><th colspan="2">Application Default Credentials</th></tr>
+    <tr><td>Number</td><td>4110</td></tr>
+    <tr><td>Permalink</td><td><a href="https://google.aip.dev/auth/4110">google.aip.dev/auth/4110</a></td></tr>
+    <tr><td>Scope</td><td>Auth</td></tr>
+    <tr><td>State</td><td>Approved</td></tr>
+    <tr><td>Created</td><td>2018-06-24</td></tr>
+    <tr><td>Updated</td><td>2018-06-24</td></tr>
+  </table>
+
+  <section id="aip-toc" class="docs-component-sidebar-toc">
+    <div class="toc"><span class="toctitle">Contents</span><ul>
+<li><a href="#guidance">Guidance</a><ul>
+<li><a href="#credential-types">Credential Types</a></li>
+<li><a href="#environment-variables">Environment Variables</a></li>
+<li><a href="#inputs-outputs">Inputs &amp; Outputs</a></li>
+</ul>
+</li>
+<li><a href="#expected-behavior">Expected Behavior</a></li>
+<li><a href="#changelog">Changelog</a></li>
+</ul>
+</div>
+
+  </section>
+
+  <section class="docs-component-sidebar-actions">
+    <ul>
+      <li><a href="https://github.com/aip-dev/google.aip.dev/issues/">File Bug</a></li>
+      <li><a href="https://github.com/aip-dev/google.aip.dev/blob/master/aip/auth/4110.md">View source</a></li>
+      <li><a href="https://github.com/aip-dev/google.aip.dev/edit/master/aip/auth/4110.md">Edit this page</a></li>
+    </ul>
+  </section>
+</aside>
+<section id="aip-main" class="docs-component-main">
+  <section class="section-breadcrumbs">
+  <nav
+    class="glue-breadcrumbs glue-mod-mt-std glue-mod-mb-std"
+    aria-label="You are here."
+  >
+    <ol class="glue-breadcrumbs__list aip-breadcrumbs">
+      <li class="glue-breadcrumbs__item" aria-level="1">
+        <a class="glue-breadcrumbs__link" href="/">
+          API Improvement Proposals
+        </a>
+      </li>
+      
+      <li class="glue-breadcrumbs__item" aria-level="2">
+        <a class="glue-breadcrumbs__link" href="/auth">
+          Auth AIPs
+        </a>
+      </li>
+      
+      <li class="glue-breadcrumbs__item glue-breadcrumbs__item--active"
+          aria-level="3">
+        Application Default Credentials
+      </li>
+    </ol>
+  </nav>
+</section>
+  
+  <h4 class="aip-number">AIP-4110</h4>
+  <h1 id="application-default-credentials">Application Default Credentials</h1>
+<p>Google auth libraries use a strategy called <em>Application Default Credentials
+(ADC)</em> to detect and select credentials based on environment or context. With
+ADC, developers should be able to run the code in different environments and the
+supporting systems fetch the appropriate credentials based on each environment
+in an effortless manner.</p>
+<p>Auth libraries following the standards in these AIPs are known as <em>"Google
+Unified Auth Clients"</em>, or <em>GUAC</em> for short. The resulting libraries are
+colloquially called <em>GUACs</em>.</p>
+<p><strong>Note:</strong> Because this AIP describes guidance and requirements in a
+language-neutral way, it uses generic terminology which may be imprecise or
+inappropriate in certain languages or environments.</p>
+<h2 id="guidance">Guidance</h2>
+<h3 id="credential-types">Credential Types</h3>
+<p>This section outlines the supported credential types of the ADC.</p>
+<ul>
+<li>
+<p><strong>Gcloud Credential</strong>: A credential provided by the <a href="https://cloud.google.com/sdk/gcloud/reference/auth/application-default/login">Gcloud tool</a> that
+identifies a human user that needs to authenticate to access Google APIs. The
+auth libraries <strong>must</strong> support this credential type.</p>
+</li>
+<li>
+<p><strong>Service Account Key</strong>: A credential that identifies a non-human user that
+needs to authenticate to access Google APIs. The auth libraries <strong>must</strong> support
+this credential type.</p>
+</li>
+<li>
+<p><strong>OAuth Client ID</strong>: A credential that identifies the client application which
+allows human users to sign-in through <a href="https://developers.google.com/identity/protocols/oauth2/native-app">3-legged OAuth flow</a>, which grants the
+permissions to the application to access Google APIs on behalf of the human
+user. The auth libraries <strong>may</strong> support this credential type.</p>
+</li>
+<li>
+<p><strong>External Account Credential</strong>: A configuration file identifying
+<a href="./4117">external non-Google credentials</a> that can be exchanged for Google access
+tokens to access Google APIs. The auth libraries <strong>must</strong> support this
+credential type.</p>
+</li>
+</ul>
+<h3 id="environment-variables">Environment Variables</h3>
+<p>The auth libraries <strong>must</strong> support the following environment variables to allow
+developers to provide authentication configuration for their application:</p>
+<ul>
+<li>
+<p><strong>GOOGLE_APPLICATION_CREDENTIALS</strong>: The specified value will be used as the
+full path for ADC to locate the credentials file. The credentials file
+<strong>should</strong> be one of the following types:</p>
+<ul>
+<li>Gcloud credentials</li>
+<li>Service account key</li>
+<li>External account credentials</li>
+</ul>
+<p>The credentials <strong>may</strong> be the OAuth Client ID if it is supported by the
+auth library. Credentials file path specified at the program level (e.g. via
+client options) <strong>must</strong> have priority over the value of this environment
+variable.</p>
+</li>
+<li>
+<p><strong>GOOGLE_API_USE_CLIENT_CERTIFICATE:</strong> The specified value <strong>must</strong> be
+either true or false. The client certificate <strong>must</strong> be ignored if this
+variable is set to false. The default value is false if the value is unset.</p>
+</li>
+</ul>
+<div class="highlight language-None"><pre><span></span><code>GOOGLE_API_USE_CLIENT_CERTIFICATE=[true|false]
+</code></pre></div>
+<ul>
+<li><strong>GOOGLE_CLOUD_QUOTA_PROJECT:</strong> The quota project id to be set on the credential.
+The value from the environment variable will override any quota project that is 
+present in the credential detected by the ADC mechanism.</li>
+</ul>
+<h3 id="inputs-outputs">Inputs &amp; Outputs</h3>
+<p>From the input/output perspective, the inputs of <em>ADC</em> <strong>should</strong> be the
+credentials as well as the underlying environment such as environment variables
+or metadata service that provides these credentials.</p>
+<p>For example, the <code>GOOGLE_APPLICATION_CREDENTIALS</code> environment variable can provide
+the default credential JSON as the input here, or the well-known path that
+gCloud uses to store the default user credential JSON. The output is the access
+token that application can use to access the Google APIs. This access token
+<strong>may</strong> be a bearer token, a certificate-bound token, or an identity-bound token
+depending on the chosen authentication flow.</p>
+<h2 id="expected-behavior">Expected Behavior</h2>
+<p>This section outlines the expected behavior of the ADC. Auth libraries <strong>must</strong>
+implement these concepts in order to be considered complete.</p>
+<div class="highlight language-graphviz"><pre><span></span><code><span class="k">digraph</span><span class="w"> </span><span class="nt">d_front_back</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="na">rankdir</span><span class="p">=</span><span class="s">TB</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="na">ranksep</span><span class="p">=</span><span class="m">0.3</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="k">node</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="na">style</span><span class="p">=</span><span class="s2">&quot;filled,solid&quot;</span><span class="w"> </span><span class="na">shape</span><span class="p">=</span><span class="s">box</span><span class="w"> </span><span class="na">fontname</span><span class="p">=</span><span class="s2">&quot;Roboto&quot;</span><span class="w"> </span><span class="p">];</span><span class="w"></span>
+
+<span class="w">  </span><span class="nt">check_env_var</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="na">label</span><span class="p">=</span><span class="s2">&quot;1. Check Environment Variables&quot;</span><span class="w"> </span><span class="p">];</span><span class="w"></span>
+<span class="w">  </span><span class="nt">load_credentials</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="na">label</span><span class="p">=</span><span class="s2">&quot;2. Load Credentials&quot;</span><span class="w"> </span><span class="p">];</span><span class="w"></span>
+<span class="w">  </span><span class="nt">check_metadata</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="na">label</span><span class="p">=</span><span class="s2">&quot;3. Check workload credentials&quot;</span><span class="w"> </span><span class="p">];</span><span class="w"></span>
+<span class="w">  </span><span class="nt">auth_flows</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="na">label</span><span class="p">=</span><span class="s2">&quot;4. Determine Auth Flows&quot;</span><span class="w"> </span><span class="p">];</span><span class="w"></span>
+<span class="w">  </span><span class="nt">execute</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="na">label</span><span class="p">=</span><span class="s2">&quot;5. Execute Auth Flows&quot;</span><span class="w"> </span><span class="p">];</span><span class="w"></span>
+<span class="w">  </span><span class="nt">post_processing</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="na">label</span><span class="p">=</span><span class="s2">&quot;6. Post Processing&quot;</span><span class="w"> </span><span class="p">];</span><span class="w"></span>
+
+<span class="w">  </span><span class="nt">check_env_var</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nt">load_credentials</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nt">check_metadata</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nt">auth_flows</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nt">execute</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nt">post_processing</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="nt">load_credentials</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nt">auth_flows</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="nt">check_metadata</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nt">post_processing</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<ol>
+<li><strong>Check environment variables</strong><ol>
+<li>Check GOOGLE_APPLICATION_CREDENTIALS<ol>
+<li>If set, go to step (2.2)</li>
+<li>If not set, go to step (2)</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><strong>Load credentials</strong><ol>
+<li>Check <a href="./4113">gcloud default credentials</a> through its default path<ol>
+<li>If found go to step (2.2)</li>
+<li>Otherwise go to step (3)</li>
+</ol>
+</li>
+<li>Check the provided credential type<ol>
+<li>If the credential is gcloud credentials, go to step (4)</li>
+<li>If the credential is <a href="./4112">a service account key</a> JSON, go to step (4)</li>
+<li>If the credential is <a href="./4117">an external account</a> JSON, go to step (4)</li>
+<li>If the credential is unknown type, return an error saying that <em>[END]</em></li>
+</ol>
+</li>
+<li>Credentials not found <em>[END]</em></li>
+</ol>
+</li>
+<li><strong>Check workload credentials (on GCE, GKE, GAE and Serverless)</strong><ol>
+<li>If true,<ol>
+<li>If identity binding is enabled, by meeting the requirements in
+   <a href="./4119">mTLS Token Binding</a>, use the mTLS Token Binding flow to fetch an
+   identity-bound access token. Go to step(6).</li>
+<li>If there is an issue when obtaining bound access tokens, return an error
+   indicating that <em>[END]</em></li>
+<li>If identity binding is not enabled, use the <a href="./4115">virtual machine flow</a> to
+   fetch an auth token associated with the current environment<ol>
+<li>If target audience is provided by the developer, get an <a href="./4116">identity token</a>. Go to step(6).</li>
+<li>Otherwise, get an access token. Go to step(6).</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>If false, go to step (2.3)</li>
+</ol>
+</li>
+<li><strong>Determine auth flows</strong><ol>
+<li>If the credential is gcloud credential go to step (5.3)</li>
+<li>If target audience or scope is provided by the developer go to step (5.1)</li>
+<li>If the credential is an external account go to step (5.4)</li>
+<li>Otherwise, go to step (5.2)</li>
+</ol>
+</li>
+<li><strong>Execute auth flows</strong><ol>
+<li>Use 2LO flow to exchange for an auth token<ol>
+<li>If target audience is provided by the developer, get an <a href="./4116">identity token</a>. Go to step(6).</li>
+<li>Otherwise, get an access token. Go to step(6).<ol>
+<li>If client certificate is presented, the exchanged token will be a certificate bind token. Go to step(6).</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>Use self-signed JWT flow to create an access token locally.<ol>
+<li>If certificate is presented, embed the certificate into the JWT.</li>
+<li>Use the regular <a href="./4111">self-signed JWT flow</a> for an access token. Go to step(6).</li>
+</ol>
+</li>
+<li>Use user identity flow to exchange for an access token. Go to step(6).</li>
+<li>Use <a href="./4117">external account</a> flow to exchange for an access token. Go to step(6).</li>
+</ol>
+</li>
+<li><strong>Post Processing</strong><ol>
+<li>Update Quota Project<ol>
+<li>If a quota project is provided explicitly while initiating ADC, override the quota project in the credential with the explicit value. <em>[END]</em></li>
+<li>Else if the <code>GOOGLE_CLOUD_QUOTA_PROJECT</code> environment variable is set, override the quota project in the credential with this value. <em>[END]</em></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="changelog">Changelog</h2>
+<ul>
+<li><strong>2019-08-13</strong>: Add a link to virtual machine flow (AIP 4115).</li>
+<li><strong>2019-08-18</strong>: Remove STS support from ADC.</li>
+<li><strong>2021-01-20</strong>: Add identity token flow (AIP 4116).</li>
+<li><strong>2021-06-29</strong>: Guidance for GOOGLE_API_KEY temporarily removed until consensus can be established.</li>
+<li><strong>2021-12-10</strong>: Add external account credentials (AIP 4117).</li>
+<li><strong>2023-01-23</strong>: Add Quota Project Environment variable.</li>
+</ul>
+<!-- prettier-ignore-start -->
+<!-- prettier-ignore-end -->
+  <footer>
+  Except as otherwise noted, the content of this page is licensed under the
+  <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons
+  Attribution 4.0 License</a>, and code samples are licensed under the
+  <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a>.
+  <span class="no-print">For details, see <a href="/licensing">content
+  licensing</a>.</span>
+</footer>
+</section>
+
+        </section>
+      </main>
+      
+    </div>
+    <script src="//www.gstatic.com/external_hosted/hammerjs/v2_0_2/hammer.min.js"></script>
+    <script src="//www.gstatic.com/glue/v22_1/glue-vanilla.min.js"></script>
+    <script type="text/javascript">
+      const headerElement = document.querySelector('.glue-header');
+      if (headerElement) {
+        new window.glue.ui.header.Header(headerElement);
+      }
+    </script>
+  </body>
+</html>

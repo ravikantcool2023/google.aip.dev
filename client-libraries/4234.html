@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en-US" class="glue-flexbox">
+  <head>
+    <title>AIP-4234: Common service client mixins</title>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,maximum-scale=2">
+    <link href="//fonts.googleapis.com/css?family=Roboto:100,300,400,500,700|Google+Sans:400,500|Product+Sans:400&amp;lang=en" rel="stylesheet"></link>
+    <link rel="shortcut icon" href="/assets/favicon.ico">
+    <link rel="stylesheet" type="text/css" media="screen" href="//www.gstatic.com/glue/v22_1/glue.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/css/style.css?v=45e6bdc1">
+    <link rel="stylesheet" type="text/css" media="print" href="/assets/css/print.css?v=45e6bdc1">
+    <script type="text/javascript" src="//code.jquery.com/jquery-3.4.0.min.js"></script>
+    <script type="text/javascript" src="//www.gstatic.com/glue/latest/glue-detect.min.js"></script>
+    <script type="text/javascript">
+      $('html').css('visibility', 'hidden');
+      $.when($.ready).then(() => {
+        $('html').css('visibility', 'visible');
+      });
+    </script>
+    <script type="text/javascript" src="/assets/js/global.js?v=45e6bdc1"></script>
+    
+<script type="text/javascript" src="/assets/js/syntax.js"></script>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-140054909-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-140054909-1');
+    </script>
+  </head>
+  <body>
+    <!-- prettier-ignore -->
+<header class="glue-header glue-header--single">
+  <div class="glue-header__bar glue-header__bar--desktop glue-header__drawer">
+    <div class="glue-header__tier">
+      <!-- LOCK up-->
+      <div class="glue-header__container">
+        <div class="glue-header__lock-up">
+          <div class="glue-header__logo">
+            <a class="glue-header__logo-link" href="/" title="Google">
+              <div class="glue-header__logo-container">
+                <svg role="img" aria-hidden="true" class="glue-header__logo-svg">
+                <use xlink:href="/assets/images/glue-icons.svg#google-color-logo"></use>
+                </svg>
+              </div>
+              <p class="glue-header__logo--product">AIPs</p>
+            </a>
+          </div>
+          <a href="#page-content" class="glue-header__skip-content">
+            <p class="glue-header__skip-content-text">Jump to Content</p>
+          </a>
+        </div>
+      </div>
+      <!-- LINK BAR-->
+      <div class="glue-header__container glue-header__container--flex-auto">
+        <nav class="glue-header__link-bar">
+          <ul id="list-1" class="glue-header__list">
+            
+              
+                <li class="glue-header__item">
+                  <a class="glue-header__link" href="/general" aria-level="1">Browse AIPs</a>
+                </li>
+              
+            
+              
+                <li class="glue-header__item">
+                  <a class="glue-header__link" href="/news" aria-level="1">News</a>
+                </li>
+              
+            
+              
+                <li class="glue-header__item">
+                  <a class="glue-header__link" href="/faq" aria-level="1">FAQ</a>
+                </li>
+              
+            
+              
+                <li class="glue-header__item">
+                  <a class="glue-header__link" href="/contributing" aria-level="1">Contributing</a>
+                </li>
+              
+            
+              
+                <li class="glue-header__item">
+                  <a class="glue-header__link" href="https://linter.aip.dev/" target="_blank" aria-level="1">
+                    API Linter
+                    <svg role="img" class="glue-icon glue-icon--18px">
+                      <use xlink:href="/assets/images/glue-icons.svg#open-in-new"></use>
+                    </svg>
+                  </a>
+                </li>
+              
+            
+          </ul>
+        </nav>
+      </div>
+      <!-- CTA-->
+      <div class="glue-header__container glue-header__container--cta">
+        <div class="glue-header__cta">
+        <div class="glue-sitesearch">
+          <form method="GET" action="/search">
+          <label for="q">Search this site</label>
+          <input class="glue-sitesearch__input" type="text" name="q" id="q"
+            placeholder="Search AIPs">
+          <button type="submit" class="glue-button glue-sitesearch__submit" title="Submit">
+            <svg role="img" class="glue-icon glue-icon--24px">
+            <use xlink:href="/assets/images/glue-icons.svg#search"></use>
+            </svg>
+          </button>
+          </form>
+        </div>
+        <a href="https://github.com/aip-dev/google.aip.dev" target="_blank" class="glue-button glue-button--high-emphasis">
+          <img src="/assets/images/github.png" class="github-logo">
+          View on GitHub
+        </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Mobile header placeholder -->
+  <div class="glue-header__bar glue-header__bar--mobile">
+    <div class="glue-header__tier">
+      <!-- LOCK up-->
+      <div class="glue-header__container">
+        <div class="glue-header__lock-up">
+          <div class="glue-header__hamburger glue-header__hamburger--first-tier">
+            <div class="glue-header__hamburger-wrapper">
+              <button type="button" class="glue-header__drawer-toggle-btn"
+                aria-controls="drawer" aria-expanded="false" aria-label="Open the navigation drawer">
+                <svg role="img" class="glue-icon glue-icon--24px"><use xlink:href="/assets/images/glue-icons.svg#menu"></use></svg>
+              </button>
+            </div>
+          </div>
+          <div class="glue-header__logo">
+            <a class="glue-header__logo-link" href="/" title="Google">
+              <div class="glue-header__logo-container">
+                <svg role="img" aria-hidden="true" class="glue-header__logo-svg">
+                  <use xlink:href="/assets/images/glue-icons.svg#google-color-logo"></use>
+                </svg>
+              </div>
+              <p class="glue-header__logo--product">AIPs</p>
+            </a>
+          </div>
+          <!-- SKIP -->
+          <a href="#page-content" class="glue-header__skip-content">
+            <p class="glue-header__skip-content-text">Jump to Content</p>
+          </a>
+        </div>
+      </div>
+      <!-- CTA -->
+      <div class="glue-header__container">
+        <div class="glue-header__cta">
+        <a href="https://github.com/aip-dev/google.aip.dev" class="glue-button glue-button--high-emphasis">
+          <img src="/assets/images/github.png" class="github-logo">
+          View on GitHub
+        </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="glue-header__drawer-backdrop"></div>
+</header>
+    <div class="glue-page">
+      
+      <main role="main" id="page-content">
+        
+<nav id="aip-nav" class="docs-component-nav">
+  <ul class="nav-list">
+    <li class="nav-item nav-item-header">AIPs by Scope</li>
+    <li class="nav-item">
+      <a href="/general">General</a>
+    </li>
+    <li class="nav-item">
+      <a href="/cloud">Google Cloud Platform</a>
+    </li>
+    <li class="nav-item">
+      <a href="/auth">Auth</a>
+    </li>
+    <li class="nav-item">
+      <a href="/client-libraries">Client libraries</a>
+    </li>
+    <li class="nav-item">
+      <a href="/apps">GSuite</a>
+    </li>
+    <li class="nav-item">
+      <a href="/aog">Actions on Google</a>
+    </li>
+    <li class="nav-item nav-item-header">AIPs</li>
+    <li class="nav-item">
+      <a href="/4210">
+        <span class="aip-number">4210</span>
+        Client library generators
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/4221">
+        <span class="aip-number">4221</span>
+        Client-side retry
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/4222">
+        <span class="aip-number">4222</span>
+        Routing headers
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/4223">
+        <span class="aip-number">4223</span>
+        Client-side payload validation
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/4231">
+        <span class="aip-number">4231</span>
+        Parsing resource names
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/4232">
+        <span class="aip-number">4232</span>
+        Method signatures
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/4233">
+        <span class="aip-number">4233</span>
+        Automatic pagination
+      </a>
+    </li>
+    <li class="nav-item nav-item-active">
+      <a href="/4234">
+        <span class="aip-number">4234</span>
+        Common service client mixins
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/4235">
+        <span class="aip-number">4235</span>
+        Automatically populate fields in the request message
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/4236">
+        <span class="aip-number">4236</span>
+        Version-aware clients
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/4290">
+        <span class="aip-number">4290</span>
+        Docker interface
+      </a>
+    </li>
+    </ul>
+</nav>
+<section id="jump-content">
+          
+<aside id="aip-sidebar" class="docs-component-sidebar">
+  <table id="aip-summary">
+    <tr><th colspan="2">Common service client mixins</th></tr>
+    <tr><td>Number</td><td>4234</td></tr>
+    <tr><td>Permalink</td><td><a href="https://google.aip.dev/client-libraries/4234">google.aip.dev/client-libraries/4234</a></td></tr>
+    <tr><td>Scope</td><td>Client libraries</td></tr>
+    <tr><td>State</td><td>Approved</td></tr>
+    <tr><td>Created</td><td>2021-06-07</td></tr>
+    <tr><td>Updated</td><td>2021-06-07</td></tr>
+  </table>
+
+  <section id="aip-toc" class="docs-component-sidebar-toc">
+    <div class="toc"><span class="toctitle">Contents</span><ul>
+<li><a href="#guidance">Guidance</a></li>
+<li><a href="#implementing-mixin-support">Implementing mixin support</a><ul>
+<li><a href="#generator-configuration">Generator configuration</a></li>
+<li><a href="#mixin-api-client-configuration">Mixin API client configuration</a></li>
+<li><a href="#generating-mixin-methods">Generating mixin methods</a></li>
+<li><a href="#multiple-host-service-clients">Multiple host service clients</a></li>
+<li><a href="#overriding-a-duplicate-rpc">Overriding a duplicate RPC</a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+  </section>
+
+  <section class="docs-component-sidebar-actions">
+    <ul>
+      <li><a href="https://github.com/aip-dev/google.aip.dev/issues/">File Bug</a></li>
+      <li><a href="https://github.com/aip-dev/google.aip.dev/blob/master/aip/client-libraries/4234.md">View source</a></li>
+      <li><a href="https://github.com/aip-dev/google.aip.dev/edit/master/aip/client-libraries/4234.md">Edit this page</a></li>
+    </ul>
+  </section>
+</aside>
+<section id="aip-main" class="docs-component-main">
+  <section class="section-breadcrumbs">
+  <nav
+    class="glue-breadcrumbs glue-mod-mt-std glue-mod-mb-std"
+    aria-label="You are here."
+  >
+    <ol class="glue-breadcrumbs__list aip-breadcrumbs">
+      <li class="glue-breadcrumbs__item" aria-level="1">
+        <a class="glue-breadcrumbs__link" href="/">
+          API Improvement Proposals
+        </a>
+      </li>
+      
+      <li class="glue-breadcrumbs__item" aria-level="2">
+        <a class="glue-breadcrumbs__link" href="/client-libraries">
+          Client libraries AIPs
+        </a>
+      </li>
+      
+      <li class="glue-breadcrumbs__item glue-breadcrumbs__item--active"
+          aria-level="3">
+        Common service client mixins
+      </li>
+    </ol>
+  </nav>
+</section>
+  
+  <h4 class="aip-number">AIP-4234</h4>
+  <h1 id="common-service-client-mixins">Common service client mixins</h1>
+<p>Often, APIs can have common features for administering resources that are
+separated into utility services. These common, utility services are shared among
+the discrete product services. These common services each have a
+centrally-defined surface, but individual instances are hosted alongside each
+product service. Thus, the surfaces of each common service hosted by the product
+service are "mixed in" at runtime.</p>
+<h2 id="guidance">Guidance</h2>
+<p>Client libraries <strong>may</strong> provide client methods for the common services that its
+API declares to be mixed-in. Such methods improve the user experience by
+presenting the mixin methods from a client configured to communicate with the
+product service that hosts the mixin service.</p>
+<p>If client libraries support mixin services, they <strong>must</strong> support the following
+common services (and <strong>may</strong> support others):</p>
+<ul>
+<li><code>google.cloud.location.Locations</code></li>
+<li><code>google.iam.v1.IAMPolicy</code></li>
+<li><code>google.longrunning.Operations</code></li>
+</ul>
+<p><strong>Note:</strong> The list of supported mixin services and the mixin services
+themselves both change infrequently. Any new common service to be supported
+<strong>must</strong> be added to the list here and generators <strong>must</strong> be updated.</p>
+<p>To be generated into a client library, a mixin service <strong>must</strong> be declared
+under <a href="https://github.com/googleapis/googleapis/blob/master/google/api/service.proto#L96">apis</a> in a <a href="https://github.com/googleapis/googleapis/blob/master/google/api/service.proto">google.api.Service</a>. Furthermore, only the RPCs with
+<a href="https://github.com/googleapis/googleapis/blob/master/google/api/http.proto">google.api.http</a> bindings declared in the <a href="https://github.com/googleapis/googleapis/blob/master/google/api/service.proto#L124">http</a> configuration of the same
+<a href="https://github.com/googleapis/googleapis/blob/master/google/api/service.proto">google.api.Service</a> can be generated (more details on these bindings in
+<a href="/127">AIP-127</a>). If a mixin service RPC does not have a <a href="https://github.com/googleapis/googleapis/blob/master/google/api/http.proto">google.api.http</a> rule declared
+in the <a href="https://github.com/googleapis/googleapis/blob/master/google/api/service.proto">google.api.Service</a>, it <strong>must not</strong> be generated.</p>
+<h2 id="implementing-mixin-support">Implementing mixin support</h2>
+<h3 id="generator-configuration">Generator configuration</h3>
+<p>Client library generators <strong>must</strong> accept the file path of a
+<a href="https://github.com/googleapis/googleapis/blob/master/google/api/service.proto">google.api.Service</a> in YAML form. This file is specified via a flag that
+<strong>must</strong> be optional. In other words, the flag <strong>must not</strong> be required for
+basic client generation that omits the mixin methods.</p>
+<h3 id="mixin-api-client-configuration">Mixin API client configuration</h3>
+<p>If a mixin API utilizes client library configuration (i.e. annotations, default
+retry settings, etc.) such as <code>google.api.method_signature</code> or request header
+injection, generators <strong>may</strong> support it in the generated mixin methods if the
+configuration is accessible.</p>
+<p>Where client library configuration calls for a fully-qualified name, the
+<em>mixin's</em> fully-qualified name <strong>must</strong> be used. That is to say, the host
+service <strong>must not</strong> refer to a mixin element as if it was in its own package.</p>
+<p>For example, configuring <code>google.iam.v1.IAMPolicy.GetIAMPolicy</code> with default
+retry and timeout settings would be as follows:</p>
+<div class="highlight language-json"><pre><span></span><code><span class="p">{</span>
+  <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="p">[{</span> <span class="nt">&quot;service&quot;</span><span class="p">:</span> <span class="s2">&quot;google.iam.v1.IAMPolicy&quot;</span><span class="p">,</span> <span class="nt">&quot;method&quot;</span><span class="p">:</span> <span class="s2">&quot;GetIAMPolicy&quot;</span> <span class="p">}],</span>
+  <span class="nt">&quot;timeout&quot;</span><span class="p">:</span> <span class="s2">&quot;60s&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;retryPolicy&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;initialBackoff&quot;</span><span class="p">:</span> <span class="s2">&quot;0.1s&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;maxBackoff&quot;</span><span class="p">:</span> <span class="s2">&quot;5s&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;backoffMultiplier&quot;</span><span class="p">:</span> <span class="mf">1.3</span><span class="p">,</span>
+    <span class="nt">&quot;retryableStatusCodes&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;UNKNOWN&quot;</span><span class="p">]</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="generating-mixin-methods">Generating mixin methods</h3>
+<p>The mixin API RPCs <strong>should</strong> be generated as methods on the surface of the
+host API's service client library, alongside the host service's RPCs. This
+presents them as top-level methods on the client, but under-the-hood, the
+appropriate mixin API stub or request should be invoked. However, generators
+<strong>may</strong> choose to present the mixin API RPCs in a different manner if it is more
+language idiomatic.</p>
+<p><strong>Note:</strong> For gRPC clients, the mixin API gRPC stub <strong>must</strong> be used in order
+to properly construct the gRPC request. For example, the generated, Go gRPC stub
+<a href="https://pkg.go.dev/google.golang.org/genproto@v0.0.0-20210325141258-5636347f2b14/googleapis/cloud/location#LocationsClient">LocationsClient</a> must be used to invoke RPCs for the
+<code>google.cloud.location.Locations</code> mixin, as opposed to that of the host
+service's gRPC stub.</p>
+<h3 id="multiple-host-service-clients">Multiple host service clients</h3>
+<p>If there are multiple services defined by the host API that would result in
+multiple clients being generated, generators <strong>must</strong> include the mixin
+methods on all eligible, generated service clients.</p>
+<h3 id="overriding-a-duplicate-rpc">Overriding a duplicate RPC</h3>
+<p>Client library generators <strong>must not</strong> generate a mixin method on any host
+service client if a host service already defines an RPC with the same name. For
+example, take the following service definition:</p>
+<div class="highlight language-proto"><pre><span></span><code><span class="kd">service</span> <span class="n">LibraryService</span> <span class="p">{</span>
+  <span class="k">rpc</span> <span class="n">ListBooks</span><span class="p">(</span><span class="n">ListBooksRequest</span><span class="p">)</span> <span class="k">returns</span> <span class="p">(</span><span class="n">ListBooksResponse</span><span class="p">);</span>
+
+  <span class="c1">// Other host API RPCs...</span>
+
+  <span class="c1">// Redefinitions of the google.iam.v1.IAMPolicy mixin service.</span>
+  <span class="k">rpc</span> <span class="n">GetIamPolicy</span><span class="p">(</span><span class="n">google.iam.v1.GetIamPolicyRequest</span><span class="p">)</span>
+      <span class="k">returns</span> <span class="p">(</span><span class="n">google.iam.v1.Policy</span><span class="p">);</span>
+
+  <span class="k">rpc</span> <span class="n">SetIamPolicy</span><span class="p">(</span><span class="n">google.iam.v1.SetIamPolicyRequest</span><span class="p">)</span>
+      <span class="k">returns</span> <span class="p">(</span><span class="n">google.iam.v1.Policy</span><span class="p">);</span>
+
+  <span class="k">rpc</span> <span class="n">TestIamPermissions</span><span class="p">(</span><span class="n">google.iam.v1.TestIamPermissionsRequest</span><span class="p">)</span>
+      <span class="k">returns</span> <span class="p">(</span><span class="n">google.iam.v1.TestIamPermissionsResponse</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Should the host API declare the <code>google.iam.v1.IAMPolicy</code> as a mixin service,
+client library generators <strong>must not</strong> generate the resulting mixin methods that
+match the names explicitly declared above for <em>any</em> service client in the host
+proto package, but they <strong>must</strong> generate the other methods for this mixin. In
+this case, the generator <strong>may</strong> log a warning indicating that a collision was
+avoided, or silently skip the mixin methods in question.</p>
+  <footer>
+  Except as otherwise noted, the content of this page is licensed under the
+  <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons
+  Attribution 4.0 License</a>, and code samples are licensed under the
+  <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a>.
+  <span class="no-print">For details, see <a href="/licensing">content
+  licensing</a>.</span>
+</footer>
+</section>
+
+        </section>
+      </main>
+      
+    </div>
+    <script src="//www.gstatic.com/external_hosted/hammerjs/v2_0_2/hammer.min.js"></script>
+    <script src="//www.gstatic.com/glue/v22_1/glue-vanilla.min.js"></script>
+    <script type="text/javascript">
+      const headerElement = document.querySelector('.glue-header');
+      if (headerElement) {
+        new window.glue.ui.header.Header(headerElement);
+      }
+    </script>
+  </body>
+</html>

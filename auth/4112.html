@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en-US" class="glue-flexbox">
+  <head>
+    <title>AIP-4112: Service Account Keys</title>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,maximum-scale=2">
+    <link href="//fonts.googleapis.com/css?family=Roboto:100,300,400,500,700|Google+Sans:400,500|Product+Sans:400&amp;lang=en" rel="stylesheet"></link>
+    <link rel="shortcut icon" href="/assets/favicon.ico">
+    <link rel="stylesheet" type="text/css" media="screen" href="//www.gstatic.com/glue/v22_1/glue.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/css/style.css?v=45e6bdc1">
+    <link rel="stylesheet" type="text/css" media="print" href="/assets/css/print.css?v=45e6bdc1">
+    <script type="text/javascript" src="//code.jquery.com/jquery-3.4.0.min.js"></script>
+    <script type="text/javascript" src="//www.gstatic.com/glue/latest/glue-detect.min.js"></script>
+    <script type="text/javascript">
+      $('html').css('visibility', 'hidden');
+      $.when($.ready).then(() => {
+        $('html').css('visibility', 'visible');
+      });
+    </script>
+    <script type="text/javascript" src="/assets/js/global.js?v=45e6bdc1"></script>
+    
+<script type="text/javascript" src="/assets/js/syntax.js"></script>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-140054909-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-140054909-1');
+    </script>
+  </head>
+  <body>
+    <!-- prettier-ignore -->
+<header class="glue-header glue-header--single">
+  <div class="glue-header__bar glue-header__bar--desktop glue-header__drawer">
+    <div class="glue-header__tier">
+      <!-- LOCK up-->
+      <div class="glue-header__container">
+        <div class="glue-header__lock-up">
+          <div class="glue-header__logo">
+            <a class="glue-header__logo-link" href="/" title="Google">
+              <div class="glue-header__logo-container">
+                <svg role="img" aria-hidden="true" class="glue-header__logo-svg">
+                <use xlink:href="/assets/images/glue-icons.svg#google-color-logo"></use>
+                </svg>
+              </div>
+              <p class="glue-header__logo--product">AIPs</p>
+            </a>
+          </div>
+          <a href="#page-content" class="glue-header__skip-content">
+            <p class="glue-header__skip-content-text">Jump to Content</p>
+          </a>
+        </div>
+      </div>
+      <!-- LINK BAR-->
+      <div class="glue-header__container glue-header__container--flex-auto">
+        <nav class="glue-header__link-bar">
+          <ul id="list-1" class="glue-header__list">
+            
+              
+                <li class="glue-header__item">
+                  <a class="glue-header__link" href="/general" aria-level="1">Browse AIPs</a>
+                </li>
+              
+            
+              
+                <li class="glue-header__item">
+                  <a class="glue-header__link" href="/news" aria-level="1">News</a>
+                </li>
+              
+            
+              
+                <li class="glue-header__item">
+                  <a class="glue-header__link" href="/faq" aria-level="1">FAQ</a>
+                </li>
+              
+            
+              
+                <li class="glue-header__item">
+                  <a class="glue-header__link" href="/contributing" aria-level="1">Contributing</a>
+                </li>
+              
+            
+              
+                <li class="glue-header__item">
+                  <a class="glue-header__link" href="https://linter.aip.dev/" target="_blank" aria-level="1">
+                    API Linter
+                    <svg role="img" class="glue-icon glue-icon--18px">
+                      <use xlink:href="/assets/images/glue-icons.svg#open-in-new"></use>
+                    </svg>
+                  </a>
+                </li>
+              
+            
+          </ul>
+        </nav>
+      </div>
+      <!-- CTA-->
+      <div class="glue-header__container glue-header__container--cta">
+        <div class="glue-header__cta">
+        <div class="glue-sitesearch">
+          <form method="GET" action="/search">
+          <label for="q">Search this site</label>
+          <input class="glue-sitesearch__input" type="text" name="q" id="q"
+            placeholder="Search AIPs">
+          <button type="submit" class="glue-button glue-sitesearch__submit" title="Submit">
+            <svg role="img" class="glue-icon glue-icon--24px">
+            <use xlink:href="/assets/images/glue-icons.svg#search"></use>
+            </svg>
+          </button>
+          </form>
+        </div>
+        <a href="https://github.com/aip-dev/google.aip.dev" target="_blank" class="glue-button glue-button--high-emphasis">
+          <img src="/assets/images/github.png" class="github-logo">
+          View on GitHub
+        </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Mobile header placeholder -->
+  <div class="glue-header__bar glue-header__bar--mobile">
+    <div class="glue-header__tier">
+      <!-- LOCK up-->
+      <div class="glue-header__container">
+        <div class="glue-header__lock-up">
+          <div class="glue-header__hamburger glue-header__hamburger--first-tier">
+            <div class="glue-header__hamburger-wrapper">
+              <button type="button" class="glue-header__drawer-toggle-btn"
+                aria-controls="drawer" aria-expanded="false" aria-label="Open the navigation drawer">
+                <svg role="img" class="glue-icon glue-icon--24px"><use xlink:href="/assets/images/glue-icons.svg#menu"></use></svg>
+              </button>
+            </div>
+          </div>
+          <div class="glue-header__logo">
+            <a class="glue-header__logo-link" href="/" title="Google">
+              <div class="glue-header__logo-container">
+                <svg role="img" aria-hidden="true" class="glue-header__logo-svg">
+                  <use xlink:href="/assets/images/glue-icons.svg#google-color-logo"></use>
+                </svg>
+              </div>
+              <p class="glue-header__logo--product">AIPs</p>
+            </a>
+          </div>
+          <!-- SKIP -->
+          <a href="#page-content" class="glue-header__skip-content">
+            <p class="glue-header__skip-content-text">Jump to Content</p>
+          </a>
+        </div>
+      </div>
+      <!-- CTA -->
+      <div class="glue-header__container">
+        <div class="glue-header__cta">
+        <a href="https://github.com/aip-dev/google.aip.dev" class="glue-button glue-button--high-emphasis">
+          <img src="/assets/images/github.png" class="github-logo">
+          View on GitHub
+        </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="glue-header__drawer-backdrop"></div>
+</header>
+    <div class="glue-page">
+      
+      <main role="main" id="page-content">
+        
+<nav id="aip-nav" class="docs-component-nav">
+  <ul class="nav-list">
+    <li class="nav-item nav-item-header">AIPs by Scope</li>
+    <li class="nav-item">
+      <a href="/general">General</a>
+    </li>
+    <li class="nav-item">
+      <a href="/cloud">Google Cloud Platform</a>
+    </li>
+    <li class="nav-item">
+      <a href="/auth">Auth</a>
+    </li>
+    <li class="nav-item">
+      <a href="/client-libraries">Client libraries</a>
+    </li>
+    <li class="nav-item">
+      <a href="/apps">GSuite</a>
+    </li>
+    <li class="nav-item">
+      <a href="/aog">Actions on Google</a>
+    </li>
+    <li class="nav-item nav-item-header">AIPs</li>
+    <li class="nav-item">
+      <a href="/4110">
+        <span class="aip-number">4110</span>
+        Application Default Credentials
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/4111">
+        <span class="aip-number">4111</span>
+        Self-signed JWT
+      </a>
+    </li>
+    <li class="nav-item nav-item-active">
+      <a href="/4112">
+        <span class="aip-number">4112</span>
+        Service Account Keys
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/4113">
+        <span class="aip-number">4113</span>
+        gcloud CLI Integration
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/4114">
+        <span class="aip-number">4114</span>
+        Device Certificate Authentication via Mutual TLS
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/4115">
+        <span class="aip-number">4115</span>
+        Default Credentials For Google Cloud Virtual Environments
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/4116">
+        <span class="aip-number">4116</span>
+        Identity Tokens
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/4117">
+        <span class="aip-number">4117</span>
+        External Account Credentials (Workload Identity Federation)
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/4118">
+        <span class="aip-number">4118</span>
+        Mutual Authentication Using Workload Credentials
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/4119">
+        <span class="aip-number">4119</span>
+        mTLS Token Binding
+      </a>
+    </li>
+    </ul>
+</nav>
+<section id="jump-content">
+          
+<aside id="aip-sidebar" class="docs-component-sidebar">
+  <table id="aip-summary">
+    <tr><th colspan="2">Service Account Keys</th></tr>
+    <tr><td>Number</td><td>4112</td></tr>
+    <tr><td>Permalink</td><td><a href="https://google.aip.dev/auth/4112">google.aip.dev/auth/4112</a></td></tr>
+    <tr><td>Scope</td><td>Auth</td></tr>
+    <tr><td>State</td><td>Approved</td></tr>
+    <tr><td>Created</td><td>2020-08-13</td></tr>
+    <tr><td>Updated</td><td>2020-08-13</td></tr>
+  </table>
+
+  <section id="aip-toc" class="docs-component-sidebar-toc">
+    <div class="toc"><span class="toctitle">Contents</span><ul>
+<li><a href="#guidance">Guidance</a><ul>
+<li><a href="#service-account-key-authentication-using-oauth">Service Account Key Authentication Using OAuth</a></li>
+<li><a href="#expected-behavior">Expected Behavior</a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+  </section>
+
+  <section class="docs-component-sidebar-actions">
+    <ul>
+      <li><a href="https://github.com/aip-dev/google.aip.dev/issues/">File Bug</a></li>
+      <li><a href="https://github.com/aip-dev/google.aip.dev/blob/master/aip/auth/4112.md">View source</a></li>
+      <li><a href="https://github.com/aip-dev/google.aip.dev/edit/master/aip/auth/4112.md">Edit this page</a></li>
+    </ul>
+  </section>
+</aside>
+<section id="aip-main" class="docs-component-main">
+  <section class="section-breadcrumbs">
+  <nav
+    class="glue-breadcrumbs glue-mod-mt-std glue-mod-mb-std"
+    aria-label="You are here."
+  >
+    <ol class="glue-breadcrumbs__list aip-breadcrumbs">
+      <li class="glue-breadcrumbs__item" aria-level="1">
+        <a class="glue-breadcrumbs__link" href="/">
+          API Improvement Proposals
+        </a>
+      </li>
+      
+      <li class="glue-breadcrumbs__item" aria-level="2">
+        <a class="glue-breadcrumbs__link" href="/auth">
+          Auth AIPs
+        </a>
+      </li>
+      
+      <li class="glue-breadcrumbs__item glue-breadcrumbs__item--active"
+          aria-level="3">
+        Service Account Keys
+      </li>
+    </ol>
+  </nav>
+</section>
+  
+  <h4 class="aip-number">AIP-4112</h4>
+  <h1 id="service-account-keys">Service Account Keys</h1>
+<p>A service account is a special kind of account used by an application or a
+virtual machine (VM) instance, not a person. Applications use service accounts
+to make authorized API calls, authorized as either the service account itself,
+or as Google Workspace or Cloud Identity users through domain-wide delegation. 
+Service accounts are associated with private/public RSA key-pairs that are used 
+for authentication, which is the focus of this AIP.</p>
+<p><strong>Note:</strong> Because this AIP describes guidance and requirements in a
+language-neutral way, it uses generic terminology which may be imprecise or
+inappropriate in certain languages or environments.</p>
+<h2 id="guidance">Guidance</h2>
+<p>This section describes the general guidance of supporting Service Account Key
+authentication using traditional OAuth flow. For Service Account Key
+authentication using self-signed JWT flow, please refer to the <a href="https://google.aip.dev/auth/4111">self-signed
+JWT</a> AIP.</p>
+<h3 id="service-account-key-authentication-using-oauth">Service Account Key Authentication Using OAuth</h3>
+<p>Under the latest <a href="https://google.aip.dev/auth/4110">ADC</a> guidance, when Service Account Key is provided as the
+source credential, we prefer to use the <a href="https://google.aip.dev/auth/4111">self-signed JWT</a> flow by default,
+which does not use the OAuth "scope" argument. Therefore, the client <strong>should</strong>
+choose the OAuth flow over self-signed JWT flow only if the OAuth "scope" is
+explicitly provided to the client.</p>
+<h3 id="expected-behavior">Expected Behavior</h3>
+<p>To support Service Account Key authentication using OAuth flow, the auth
+libraries <strong>must</strong> follow the steps below:</p>
+<p>1. Load the <strong>Service Account ID JSON file</strong> from the file path specified by
+<strong>GOOGLE_APPLICATION_CREDENTIALS</strong> environment variable, or an explicit
+<strong>credentials</strong> file path specified through client options. The JSON file will
+look like below:</p>
+<div class="highlight language-json"><pre><span></span><code><span class="p">{</span>
+  <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;service_account&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;project_id&quot;</span><span class="p">:</span> <span class="s2">&quot;testproject&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;private_key_id&quot;</span><span class="p">:</span> <span class="s2">&quot;redacted&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;private_key&quot;</span><span class="p">:</span> <span class="s2">&quot;redacted&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;client_email&quot;</span><span class="p">:</span> <span class="s2">&quot;testserviceaccount@test.iam.gserviceaccount.com&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;client_id&quot;</span><span class="p">:</span> <span class="s2">&quot;113258942105700140798&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;auth_uri&quot;</span><span class="p">:</span> <span class="s2">&quot;https://accounts.google.com/o/oauth2/auth&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;token_uri&quot;</span><span class="p">:</span> <span class="s2">&quot;https://oauth2.googleapis.com/token&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;auth_provider_x509_cert_url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://www.googleapis.com/oauth2/v1/certs&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;client_x509_cert_url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://www.googleapis.com/robot/v1/metadata/x509/testserviceaccount%40test.iam.gserviceaccount.com&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>Note:</strong> A Service Account ID JSON file can be downloaded from <a href="https://console.cloud.google.com/apis/credentials">Google Cloud Console</a>.</p>
+<p>2. Using any standard JWT library, such as one found at <a href="https://jwt.io/#libraries-io">jwt.io</a>, create a
+JWT with a header and claims set like the following example:</p>
+<div class="highlight language-json"><pre><span></span><code><span class="p">{</span>
+  <span class="nt">&quot;alg&quot;</span><span class="p">:</span> <span class="s2">&quot;RS256&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;typ&quot;</span><span class="p">:</span> <span class="s2">&quot;JWT&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;kid&quot;</span><span class="p">:</span> <span class="s2">&quot;abcdef1234567890&quot;</span>
+<span class="p">}</span>
+<span class="p">{</span>
+  <span class="nt">&quot;iss&quot;</span><span class="p">:</span> <span class="s2">&quot;123456-compute@developer.gserviceaccount.com&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;sub&quot;</span><span class="p">:</span> <span class="s2">&quot;123456-compute@developer.gserviceaccount.com&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;scope&quot;</span><span class="p">:</span> <span class="s2">&quot;https://www.googleapis.com/auth/pubsub&quot;</span><span class="p">,</span>
+<span class="p">}</span>
+</code></pre></div>
+<ul>
+<li>
+<p>For the <code>kid</code> field in the header, specify the service account's private
+key ID. You can find this value in the <strong>private_key_id</strong> field of the
+service account JSON file.</p>
+</li>
+<li>
+<p>For the <code>iss</code> and <code>sub</code> fields, specify the service account's email
+address. You can find this value in the <strong>client_email</strong> field of the
+service account JSON file.</p>
+</li>
+<li>
+<p>For the <code>scope</code> field, specify the <strong>scope</strong> parameter provided by the client.
+Multiple scopes can be specified using single space (" ") as delimiter.</p>
+</li>
+</ul>
+<p>3. Sign the JWT with RSA-256 using the <strong>private_key</strong> found in the service
+account JSON file. The output will be used as the request payload (a.k.a.
+assertion) for the 2-legged OAuth flow.</p>
+<p>4. Define a parameter "grant_type" as
+"urn:ietf:params:oauth:grant-type:jwt-bearer". Define a parameter "assertion" as
+the payload from step 3.</p>
+<p>5. Make a POST request to the <strong>token_uri</strong> endpoint with the parameters from
+step 4 to obtain an OAuth2 Access Token.</p>
+<!-- prettier-ignore-start -->
+<!-- prettier-ignore-end -->
+  <footer>
+  Except as otherwise noted, the content of this page is licensed under the
+  <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons
+  Attribution 4.0 License</a>, and code samples are licensed under the
+  <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a>.
+  <span class="no-print">For details, see <a href="/licensing">content
+  licensing</a>.</span>
+</footer>
+</section>
+
+        </section>
+      </main>
+      
+    </div>
+    <script src="//www.gstatic.com/external_hosted/hammerjs/v2_0_2/hammer.min.js"></script>
+    <script src="//www.gstatic.com/glue/v22_1/glue-vanilla.min.js"></script>
+    <script type="text/javascript">
+      const headerElement = document.querySelector('.glue-header');
+      if (headerElement) {
+        new window.glue.ui.header.Header(headerElement);
+      }
+    </script>
+  </body>
+</html>

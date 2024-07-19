@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en-US" class="glue-flexbox">
+  <head>
+    <title>AIP-4119: mTLS Token Binding</title>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,maximum-scale=2">
+    <link href="//fonts.googleapis.com/css?family=Roboto:100,300,400,500,700|Google+Sans:400,500|Product+Sans:400&amp;lang=en" rel="stylesheet"></link>
+    <link rel="shortcut icon" href="/assets/favicon.ico">
+    <link rel="stylesheet" type="text/css" media="screen" href="//www.gstatic.com/glue/v22_1/glue.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/css/style.css?v=45e6bdc1">
+    <link rel="stylesheet" type="text/css" media="print" href="/assets/css/print.css?v=45e6bdc1">
+    <script type="text/javascript" src="//code.jquery.com/jquery-3.4.0.min.js"></script>
+    <script type="text/javascript" src="//www.gstatic.com/glue/latest/glue-detect.min.js"></script>
+    <script type="text/javascript">
+      $('html').css('visibility', 'hidden');
+      $.when($.ready).then(() => {
+        $('html').css('visibility', 'visible');
+      });
+    </script>
+    <script type="text/javascript" src="/assets/js/global.js?v=45e6bdc1"></script>
+    
+<script type="text/javascript" src="/assets/js/syntax.js"></script>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-140054909-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-140054909-1');
+    </script>
+  </head>
+  <body>
+    <!-- prettier-ignore -->
+<header class="glue-header glue-header--single">
+  <div class="glue-header__bar glue-header__bar--desktop glue-header__drawer">
+    <div class="glue-header__tier">
+      <!-- LOCK up-->
+      <div class="glue-header__container">
+        <div class="glue-header__lock-up">
+          <div class="glue-header__logo">
+            <a class="glue-header__logo-link" href="/" title="Google">
+              <div class="glue-header__logo-container">
+                <svg role="img" aria-hidden="true" class="glue-header__logo-svg">
+                <use xlink:href="/assets/images/glue-icons.svg#google-color-logo"></use>
+                </svg>
+              </div>
+              <p class="glue-header__logo--product">AIPs</p>
+            </a>
+          </div>
+          <a href="#page-content" class="glue-header__skip-content">
+            <p class="glue-header__skip-content-text">Jump to Content</p>
+          </a>
+        </div>
+      </div>
+      <!-- LINK BAR-->
+      <div class="glue-header__container glue-header__container--flex-auto">
+        <nav class="glue-header__link-bar">
+          <ul id="list-1" class="glue-header__list">
+            
+              
+                <li class="glue-header__item">
+                  <a class="glue-header__link" href="/general" aria-level="1">Browse AIPs</a>
+                </li>
+              
+            
+              
+                <li class="glue-header__item">
+                  <a class="glue-header__link" href="/news" aria-level="1">News</a>
+                </li>
+              
+            
+              
+                <li class="glue-header__item">
+                  <a class="glue-header__link" href="/faq" aria-level="1">FAQ</a>
+                </li>
+              
+            
+              
+                <li class="glue-header__item">
+                  <a class="glue-header__link" href="/contributing" aria-level="1">Contributing</a>
+                </li>
+              
+            
+              
+                <li class="glue-header__item">
+                  <a class="glue-header__link" href="https://linter.aip.dev/" target="_blank" aria-level="1">
+                    API Linter
+                    <svg role="img" class="glue-icon glue-icon--18px">
+                      <use xlink:href="/assets/images/glue-icons.svg#open-in-new"></use>
+                    </svg>
+                  </a>
+                </li>
+              
+            
+          </ul>
+        </nav>
+      </div>
+      <!-- CTA-->
+      <div class="glue-header__container glue-header__container--cta">
+        <div class="glue-header__cta">
+        <div class="glue-sitesearch">
+          <form method="GET" action="/search">
+          <label for="q">Search this site</label>
+          <input class="glue-sitesearch__input" type="text" name="q" id="q"
+            placeholder="Search AIPs">
+          <button type="submit" class="glue-button glue-sitesearch__submit" title="Submit">
+            <svg role="img" class="glue-icon glue-icon--24px">
+            <use xlink:href="/assets/images/glue-icons.svg#search"></use>
+            </svg>
+          </button>
+          </form>
+        </div>
+        <a href="https://github.com/aip-dev/google.aip.dev" target="_blank" class="glue-button glue-button--high-emphasis">
+          <img src="/assets/images/github.png" class="github-logo">
+          View on GitHub
+        </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Mobile header placeholder -->
+  <div class="glue-header__bar glue-header__bar--mobile">
+    <div class="glue-header__tier">
+      <!-- LOCK up-->
+      <div class="glue-header__container">
+        <div class="glue-header__lock-up">
+          <div class="glue-header__hamburger glue-header__hamburger--first-tier">
+            <div class="glue-header__hamburger-wrapper">
+              <button type="button" class="glue-header__drawer-toggle-btn"
+                aria-controls="drawer" aria-expanded="false" aria-label="Open the navigation drawer">
+                <svg role="img" class="glue-icon glue-icon--24px"><use xlink:href="/assets/images/glue-icons.svg#menu"></use></svg>
+              </button>
+            </div>
+          </div>
+          <div class="glue-header__logo">
+            <a class="glue-header__logo-link" href="/" title="Google">
+              <div class="glue-header__logo-container">
+                <svg role="img" aria-hidden="true" class="glue-header__logo-svg">
+                  <use xlink:href="/assets/images/glue-icons.svg#google-color-logo"></use>
+                </svg>
+              </div>
+              <p class="glue-header__logo--product">AIPs</p>
+            </a>
+          </div>
+          <!-- SKIP -->
+          <a href="#page-content" class="glue-header__skip-content">
+            <p class="glue-header__skip-content-text">Jump to Content</p>
+          </a>
+        </div>
+      </div>
+      <!-- CTA -->
+      <div class="glue-header__container">
+        <div class="glue-header__cta">
+        <a href="https://github.com/aip-dev/google.aip.dev" class="glue-button glue-button--high-emphasis">
+          <img src="/assets/images/github.png" class="github-logo">
+          View on GitHub
+        </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="glue-header__drawer-backdrop"></div>
+</header>
+    <div class="glue-page">
+      
+      <main role="main" id="page-content">
+        
+<nav id="aip-nav" class="docs-component-nav">
+  <ul class="nav-list">
+    <li class="nav-item nav-item-header">AIPs by Scope</li>
+    <li class="nav-item">
+      <a href="/general">General</a>
+    </li>
+    <li class="nav-item">
+      <a href="/cloud">Google Cloud Platform</a>
+    </li>
+    <li class="nav-item">
+      <a href="/auth">Auth</a>
+    </li>
+    <li class="nav-item">
+      <a href="/client-libraries">Client libraries</a>
+    </li>
+    <li class="nav-item">
+      <a href="/apps">GSuite</a>
+    </li>
+    <li class="nav-item">
+      <a href="/aog">Actions on Google</a>
+    </li>
+    <li class="nav-item nav-item-header">AIPs</li>
+    <li class="nav-item">
+      <a href="/4110">
+        <span class="aip-number">4110</span>
+        Application Default Credentials
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/4111">
+        <span class="aip-number">4111</span>
+        Self-signed JWT
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/4112">
+        <span class="aip-number">4112</span>
+        Service Account Keys
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/4113">
+        <span class="aip-number">4113</span>
+        gcloud CLI Integration
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/4114">
+        <span class="aip-number">4114</span>
+        Device Certificate Authentication via Mutual TLS
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/4115">
+        <span class="aip-number">4115</span>
+        Default Credentials For Google Cloud Virtual Environments
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/4116">
+        <span class="aip-number">4116</span>
+        Identity Tokens
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/4117">
+        <span class="aip-number">4117</span>
+        External Account Credentials (Workload Identity Federation)
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/4118">
+        <span class="aip-number">4118</span>
+        Mutual Authentication Using Workload Credentials
+      </a>
+    </li>
+    <li class="nav-item nav-item-active">
+      <a href="/4119">
+        <span class="aip-number">4119</span>
+        mTLS Token Binding
+      </a>
+    </li>
+    </ul>
+</nav>
+<section id="jump-content">
+          
+<aside id="aip-sidebar" class="docs-component-sidebar">
+  <table id="aip-summary">
+    <tr><th colspan="2">mTLS Token Binding</th></tr>
+    <tr><td>Number</td><td>4119</td></tr>
+    <tr><td>Permalink</td><td><a href="https://google.aip.dev/auth/4119">google.aip.dev/auth/4119</a></td></tr>
+    <tr><td>Scope</td><td>Auth</td></tr>
+    <tr><td>State</td><td>Draft</td></tr>
+    <tr><td>Created</td><td>2022-09-09</td></tr>
+    <tr><td>Updated</td><td>2022-09-09</td></tr>
+  </table>
+
+  <section id="aip-toc" class="docs-component-sidebar-toc">
+    <div class="toc"><span class="toctitle">Contents</span><ul>
+<li><a href="#guidance">Guidance</a><ul>
+<li><a href="#prerequisites">Prerequisites</a></li>
+<li><a href="#using-mtls-token-binding">Using mTLS Token Binding</a></li>
+<li><a href="#expected-behavior">Expected Behavior</a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+  </section>
+
+  <section class="docs-component-sidebar-actions">
+    <ul>
+      <li><a href="https://github.com/aip-dev/google.aip.dev/issues/">File Bug</a></li>
+      <li><a href="https://github.com/aip-dev/google.aip.dev/blob/master/aip/auth/4119.md">View source</a></li>
+      <li><a href="https://github.com/aip-dev/google.aip.dev/edit/master/aip/auth/4119.md">Edit this page</a></li>
+    </ul>
+  </section>
+</aside>
+<section id="aip-main" class="docs-component-main">
+  <section class="section-breadcrumbs">
+  <nav
+    class="glue-breadcrumbs glue-mod-mt-std glue-mod-mb-std"
+    aria-label="You are here."
+  >
+    <ol class="glue-breadcrumbs__list aip-breadcrumbs">
+      <li class="glue-breadcrumbs__item" aria-level="1">
+        <a class="glue-breadcrumbs__link" href="/">
+          API Improvement Proposals
+        </a>
+      </li>
+      
+      <li class="glue-breadcrumbs__item" aria-level="2">
+        <a class="glue-breadcrumbs__link" href="/auth">
+          Auth AIPs
+        </a>
+      </li>
+      
+      <li class="glue-breadcrumbs__item glue-breadcrumbs__item--active"
+          aria-level="3">
+        mTLS Token Binding
+      </li>
+    </ol>
+  </nav>
+</section>
+  <p id="aip-state-banner" class="callout warning">
+  This AIP is currently a draft. This means that it is being actively debated
+  and discussed, and it may change in non-trivial ways.
+</p>
+  <h4 class="aip-number">AIP-4119</h4>
+  <h1 id="mtls-token-binding">mTLS Token Binding</h1>
+<p>Token binding allows issuing Google access tokens that are bound to mTLS
+credentials. The advantage of such mTLS bound tokens is that they are meant to
+only be used over secure channels established via mTLS credentials they are
+bound to. Therefore, using bound tokens is more secure than bearer tokens which
+can be stolen and adversarially replayed.</p>
+<p>This AIP describes the flow of (1) obtaining access tokens bound to X.509
+certificate identities, called identity-bound tokens and (2) how to use them to
+access Google APIs using the Google auth libraries.</p>
+<p><strong>Note:</strong> Because this AIP describes guidance and requirements in a
+language-neutral way, it uses generic terminology which may be imprecise or
+inappropriate in certain languages or environments.</p>
+<h2 id="guidance">Guidance</h2>
+<p>If users enable token binding, they <strong>should</strong> do so via <a href="https://google.aip.dev/auth/4110">ADC</a>. This section
+describes the general guidance of supporting such tokens.</p>
+<h3 id="prerequisites">Prerequisites</h3>
+<p>Identity-bound access tokens require that the clients have
+<a href="https://github.com/spiffe/spiffe/blob/main/standards/X509-SVID.md">X.509 SPIFFE Verifiable Identity Documents</a> (SVIDs). <a href="https://google.aip.dev/auth/4118">Mutual Authentication
+Using Workload Credentials</a> describes how such SVIDs are provisioned in
+Google Cloud.</p>
+<p>Additionally, identity-bound access tokens tokens require configuring a workload
+identity pool and identity provider with Google Cloud's IAM. The instructions on
+how to do this are out of scope of this AIP.</p>
+<h3 id="using-mtls-token-binding">Using mTLS Token Binding</h3>
+<p>The auth libraries <strong>must</strong> support the following values in the
+<strong>"~/.config/gcloud/certificate_config.json"</strong> configuration file. Note that the
+default location of this file can be changed using the
+<code>GOOGLE_API_CERTIFICATE_CONFIG</code> environment variable.</p>
+<div class="highlight language-json"><pre><span></span><code><span class="p">{</span>
+  <span class="nt">&quot;version&quot;</span><span class="p">:</span> <span class="mi">1</span>
+  <span class="nt">&quot;cert_configs&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;workload&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;cert_path&quot;</span><span class="p">:</span> <span class="nt">&quot;path/to/cert/file&quot;</span>
+      <span class="nt">&quot;key_path&quot;</span><span class="p">:</span> <span class="nt">&quot;path/to/key/file&quot;</span>
+      <span class="nt">&quot;workload_identity_provider&quot;</span><span class="p">:</span> <span class="nt">&quot;...&quot;</span>
+      <span class="nt">&quot;authenticate_as_identity_type&quot;</span><span class="p">:</span> <span class="nt">&quot;gsa/native&quot;</span>
+      <span class="nt">&quot;service_account_email&quot;</span><span class="p">:</span> <span class="s2">&quot;...&quot;</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;keychain&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="err">...</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;pkcs11&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="err">...</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;windows&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="err">...</span>
+    <span class="p">},</span>
+  <span class="p">},</span>
+  <span class="nt">&quot;libs&quot;</span><span class="p">:</span> <span class="p">{</span>
+   <span class="err">...</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>The following lists the fields relevant to mTLS token binding configuration:</p>
+<ul>
+<li><strong>"workload_identity_provider"</strong>: The specified value will be used to
+populate the request to Security Token Service (STS) to request
+identity-bound access tokens. This value refers to the fully qualified name
+of the workload identity pool and identity provider configured in IAM. The
+specified value <strong>must</strong> be of the following format.</li>
+</ul>
+<div class="highlight language-None"><pre><span></span><code>&quot;workload_identity_provider&quot;:&quot;//iam.googleapis.com/projects/&lt;project_number&gt;/locations/global/workloadIdentityPools/&lt;pool_identifier&gt;/providers/&lt;provider_identifier&gt;&quot;
+</code></pre></div>
+<ul>
+<li>
+<p><strong>"authenticate_as_identity_type"</strong>: This field specifies what identity is
+used to authenticate to Google APIs. The value can be set to <code>gsa</code> or
+<code>native</code>, where <code>gsa</code> is the GCP service account of the workload, e.g., the
+GCP service account of a GCE VM, and <code>native</code> is the native workload
+identity, e.g., the GKE pod kubernetes service account. If not specified,
+the default value is <code>gsa</code>.</p>
+</li>
+<li>
+<p><strong>"service_account_email"</strong>: If set, the specified value will be used to
+populate the request to the IAM Credentials service to request
+identity-bound access tokens. This value refers to the service account email
+to be used for resource access. If not set, the service account email will
+be determined automatically by querying the following Metadata Service
+endpoint:
+<code>http://metadata/computeMetadata/v1/instance/service-accounts/default/email</code>.
+The value of this field is only relevant if
+<strong>"authenticate_as_identity_type"</strong> is set to <code>gsa</code>.</p>
+</li>
+</ul>
+<p>The description of the <strong>"cert_path"</strong> and <strong>"key_path"</strong> fields can be found in
+<a href="https://google.aip.dev/auth/4118">Mutual Authentication Using Workload Credentials</a>.</p>
+<p>To enable using token binding when communicating with Google APIs the following
+conditions are required:</p>
+<ul>
+<li>
+<p><a href="https://google.aip.dev/auth/4118">Mutual Authentication Using Workload Credentials</a> <strong>must</strong> be enabled.</p>
+</li>
+<li>
+<p>The <strong>"workload_identity_provider"</strong> <strong>must</strong> be present,
+<strong>"authenticate_as_identity_type"</strong> <strong>may</strong> be set and
+<strong>"service_account_email"</strong> <strong>may</strong> be set in the <strong>"workload"</strong>
+section of the <strong>"~/.config/gcloud/certificate_config.json"</strong> configuration
+file.</p>
+</li>
+</ul>
+<h3 id="expected-behavior">Expected Behavior</h3>
+<p>To support the usage of identity-bound access tokens, the auth libraries
+<strong>must</strong> follow the steps below when sending requests to Google APIs:</p>
+<ol>
+<li>
+<p>Connect to the mTLS endpoint of the <a href="https://cloud.google.com/iam/docs/reference/sts/rest">STS API</a> using the workload
+credentials provisioned as described in <a href="https://google.aip.dev/auth/4118">Mutual Authentication Using
+Workload Credentials</a>. This endpoint <strong>must</strong> be
+<code>sts.mtls.googleapis.com</code>.</p>
+</li>
+<li>
+<p>Send an HTTP request to STS’s <a href="https://cloud.google.com/iam/docs/reference/sts/rest/v1/TopLevel/token">ExchangeToken</a> method requesting an
+identity-bound token using the information in the
+<strong>"workload_identity_provider"</strong> field in the
+<strong>"~/.config/gcloud/certificate_config.json"</strong> configuration file. The
+scope of the requested token <strong>must</strong> be
+<code>https://www.googleapis.com/auth/iam</code>.</p>
+</li>
+<li>
+<p>Connect to the mTLS endpoint of the <a href="https://cloud.google.com/iam/docs/reference/credentials/rest">IAM Credentials Service API</a> using
+the workload credentials provisioned as described in <a href="https://google.aip.dev/auth/4118">Mutual Authentication
+Using Workload Credentials</a>. This endpoint <strong>must</strong> be
+<code>iamcredentials.mtls.googleapis.com</code>.</p>
+</li>
+<li>
+<p>If <strong>"authenticate_as_identity_type"</strong> is set to <code>gsa</code>, send an HTTP
+request to the IAM Credentials Service’s <a href="https://cloud.google.com/iam/docs/reference/credentials/rest/v1/projects.serviceAccounts/generateAccessToken">GenerateAccessToken</a> method
+requesting an identity bound token asserting the service account email in
+the <strong>"service_account_email"</strong> field in the
+<strong>"~/.config/gcloud/certificate_config.json"</strong> configuration file. The
+scope of this token <strong>must</strong> be the same scope defined by the user for
+accessing the requested Google API.</p>
+</li>
+<li>
+<p>Attach the returned token in Step 4 to the request. Note that this request
+<strong>must</strong> be sent over an mTLS channel using the same workload credentials
+in Step 1.</p>
+</li>
+</ol>
+<!-- prettier-ignore-start -->
+<!-- prettier-ignore-end -->
+  <footer>
+  Except as otherwise noted, the content of this page is licensed under the
+  <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons
+  Attribution 4.0 License</a>, and code samples are licensed under the
+  <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a>.
+  <span class="no-print">For details, see <a href="/licensing">content
+  licensing</a>.</span>
+</footer>
+</section>
+
+        </section>
+      </main>
+      
+    </div>
+    <script src="//www.gstatic.com/external_hosted/hammerjs/v2_0_2/hammer.min.js"></script>
+    <script src="//www.gstatic.com/glue/v22_1/glue-vanilla.min.js"></script>
+    <script type="text/javascript">
+      const headerElement = document.querySelector('.glue-header');
+      if (headerElement) {
+        new window.glue.ui.header.Header(headerElement);
+      }
+    </script>
+  </body>
+</html>

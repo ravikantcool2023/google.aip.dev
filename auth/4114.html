@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en-US" class="glue-flexbox">
+  <head>
+    <title>AIP-4114: Device Certificate Authentication via Mutual TLS</title>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,maximum-scale=2">
+    <link href="//fonts.googleapis.com/css?family=Roboto:100,300,400,500,700|Google+Sans:400,500|Product+Sans:400&amp;lang=en" rel="stylesheet"></link>
+    <link rel="shortcut icon" href="/assets/favicon.ico">
+    <link rel="stylesheet" type="text/css" media="screen" href="//www.gstatic.com/glue/v22_1/glue.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/css/style.css?v=45e6bdc1">
+    <link rel="stylesheet" type="text/css" media="print" href="/assets/css/print.css?v=45e6bdc1">
+    <script type="text/javascript" src="//code.jquery.com/jquery-3.4.0.min.js"></script>
+    <script type="text/javascript" src="//www.gstatic.com/glue/latest/glue-detect.min.js"></script>
+    <script type="text/javascript">
+      $('html').css('visibility', 'hidden');
+      $.when($.ready).then(() => {
+        $('html').css('visibility', 'visible');
+      });
+    </script>
+    <script type="text/javascript" src="/assets/js/global.js?v=45e6bdc1"></script>
+    
+<script type="text/javascript" src="/assets/js/syntax.js"></script>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-140054909-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-140054909-1');
+    </script>
+  </head>
+  <body>
+    <!-- prettier-ignore -->
+<header class="glue-header glue-header--single">
+  <div class="glue-header__bar glue-header__bar--desktop glue-header__drawer">
+    <div class="glue-header__tier">
+      <!-- LOCK up-->
+      <div class="glue-header__container">
+        <div class="glue-header__lock-up">
+          <div class="glue-header__logo">
+            <a class="glue-header__logo-link" href="/" title="Google">
+              <div class="glue-header__logo-container">
+                <svg role="img" aria-hidden="true" class="glue-header__logo-svg">
+                <use xlink:href="/assets/images/glue-icons.svg#google-color-logo"></use>
+                </svg>
+              </div>
+              <p class="glue-header__logo--product">AIPs</p>
+            </a>
+          </div>
+          <a href="#page-content" class="glue-header__skip-content">
+            <p class="glue-header__skip-content-text">Jump to Content</p>
+          </a>
+        </div>
+      </div>
+      <!-- LINK BAR-->
+      <div class="glue-header__container glue-header__container--flex-auto">
+        <nav class="glue-header__link-bar">
+          <ul id="list-1" class="glue-header__list">
+            
+              
+                <li class="glue-header__item">
+                  <a class="glue-header__link" href="/general" aria-level="1">Browse AIPs</a>
+                </li>
+              
+            
+              
+                <li class="glue-header__item">
+                  <a class="glue-header__link" href="/news" aria-level="1">News</a>
+                </li>
+              
+            
+              
+                <li class="glue-header__item">
+                  <a class="glue-header__link" href="/faq" aria-level="1">FAQ</a>
+                </li>
+              
+            
+              
+                <li class="glue-header__item">
+                  <a class="glue-header__link" href="/contributing" aria-level="1">Contributing</a>
+                </li>
+              
+            
+              
+                <li class="glue-header__item">
+                  <a class="glue-header__link" href="https://linter.aip.dev/" target="_blank" aria-level="1">
+                    API Linter
+                    <svg role="img" class="glue-icon glue-icon--18px">
+                      <use xlink:href="/assets/images/glue-icons.svg#open-in-new"></use>
+                    </svg>
+                  </a>
+                </li>
+              
+            
+          </ul>
+        </nav>
+      </div>
+      <!-- CTA-->
+      <div class="glue-header__container glue-header__container--cta">
+        <div class="glue-header__cta">
+        <div class="glue-sitesearch">
+          <form method="GET" action="/search">
+          <label for="q">Search this site</label>
+          <input class="glue-sitesearch__input" type="text" name="q" id="q"
+            placeholder="Search AIPs">
+          <button type="submit" class="glue-button glue-sitesearch__submit" title="Submit">
+            <svg role="img" class="glue-icon glue-icon--24px">
+            <use xlink:href="/assets/images/glue-icons.svg#search"></use>
+            </svg>
+          </button>
+          </form>
+        </div>
+        <a href="https://github.com/aip-dev/google.aip.dev" target="_blank" class="glue-button glue-button--high-emphasis">
+          <img src="/assets/images/github.png" class="github-logo">
+          View on GitHub
+        </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Mobile header placeholder -->
+  <div class="glue-header__bar glue-header__bar--mobile">
+    <div class="glue-header__tier">
+      <!-- LOCK up-->
+      <div class="glue-header__container">
+        <div class="glue-header__lock-up">
+          <div class="glue-header__hamburger glue-header__hamburger--first-tier">
+            <div class="glue-header__hamburger-wrapper">
+              <button type="button" class="glue-header__drawer-toggle-btn"
+                aria-controls="drawer" aria-expanded="false" aria-label="Open the navigation drawer">
+                <svg role="img" class="glue-icon glue-icon--24px"><use xlink:href="/assets/images/glue-icons.svg#menu"></use></svg>
+              </button>
+            </div>
+          </div>
+          <div class="glue-header__logo">
+            <a class="glue-header__logo-link" href="/" title="Google">
+              <div class="glue-header__logo-container">
+                <svg role="img" aria-hidden="true" class="glue-header__logo-svg">
+                  <use xlink:href="/assets/images/glue-icons.svg#google-color-logo"></use>
+                </svg>
+              </div>
+              <p class="glue-header__logo--product">AIPs</p>
+            </a>
+          </div>
+          <!-- SKIP -->
+          <a href="#page-content" class="glue-header__skip-content">
+            <p class="glue-header__skip-content-text">Jump to Content</p>
+          </a>
+        </div>
+      </div>
+      <!-- CTA -->
+      <div class="glue-header__container">
+        <div class="glue-header__cta">
+        <a href="https://github.com/aip-dev/google.aip.dev" class="glue-button glue-button--high-emphasis">
+          <img src="/assets/images/github.png" class="github-logo">
+          View on GitHub
+        </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="glue-header__drawer-backdrop"></div>
+</header>
+    <div class="glue-page">
+      
+      <main role="main" id="page-content">
+        
+<nav id="aip-nav" class="docs-component-nav">
+  <ul class="nav-list">
+    <li class="nav-item nav-item-header">AIPs by Scope</li>
+    <li class="nav-item">
+      <a href="/general">General</a>
+    </li>
+    <li class="nav-item">
+      <a href="/cloud">Google Cloud Platform</a>
+    </li>
+    <li class="nav-item">
+      <a href="/auth">Auth</a>
+    </li>
+    <li class="nav-item">
+      <a href="/client-libraries">Client libraries</a>
+    </li>
+    <li class="nav-item">
+      <a href="/apps">GSuite</a>
+    </li>
+    <li class="nav-item">
+      <a href="/aog">Actions on Google</a>
+    </li>
+    <li class="nav-item nav-item-header">AIPs</li>
+    <li class="nav-item">
+      <a href="/4110">
+        <span class="aip-number">4110</span>
+        Application Default Credentials
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/4111">
+        <span class="aip-number">4111</span>
+        Self-signed JWT
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/4112">
+        <span class="aip-number">4112</span>
+        Service Account Keys
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/4113">
+        <span class="aip-number">4113</span>
+        gcloud CLI Integration
+      </a>
+    </li>
+    <li class="nav-item nav-item-active">
+      <a href="/4114">
+        <span class="aip-number">4114</span>
+        Device Certificate Authentication via Mutual TLS
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/4115">
+        <span class="aip-number">4115</span>
+        Default Credentials For Google Cloud Virtual Environments
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/4116">
+        <span class="aip-number">4116</span>
+        Identity Tokens
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/4117">
+        <span class="aip-number">4117</span>
+        External Account Credentials (Workload Identity Federation)
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/4118">
+        <span class="aip-number">4118</span>
+        Mutual Authentication Using Workload Credentials
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/4119">
+        <span class="aip-number">4119</span>
+        mTLS Token Binding
+      </a>
+    </li>
+    </ul>
+</nav>
+<section id="jump-content">
+          
+<aside id="aip-sidebar" class="docs-component-sidebar">
+  <table id="aip-summary">
+    <tr><th colspan="2">Device Certificate Authentication via Mutual TLS</th></tr>
+    <tr><td>Number</td><td>4114</td></tr>
+    <tr><td>Permalink</td><td><a href="https://google.aip.dev/auth/4114">google.aip.dev/auth/4114</a></td></tr>
+    <tr><td>Scope</td><td>Auth</td></tr>
+    <tr><td>State</td><td>Approved</td></tr>
+    <tr><td>Created</td><td>2020-07-28</td></tr>
+    <tr><td>Updated</td><td>2020-07-28</td></tr>
+  </table>
+
+  <section id="aip-toc" class="docs-component-sidebar-toc">
+    <div class="toc"><span class="toctitle">Contents</span><ul>
+<li><a href="#guidance">Guidance</a><ul>
+<li><a href="#application-default-credentials-for-dca">Application Default Credentials for DCA</a></li>
+<li><a href="#expected-behavior">Expected Behavior</a></li>
+<li><a href="#obtaining-the-default-mtls-endpoint">Obtaining the Default mTLS Endpoint</a></li>
+<li><a href="#obtaining-the-default-device-certificate">Obtaining the Default Device Certificate</a></li>
+<li><a href="#environment-variables">Environment Variables</a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+  </section>
+
+  <section class="docs-component-sidebar-actions">
+    <ul>
+      <li><a href="https://github.com/aip-dev/google.aip.dev/issues/">File Bug</a></li>
+      <li><a href="https://github.com/aip-dev/google.aip.dev/blob/master/aip/auth/4114.md">View source</a></li>
+      <li><a href="https://github.com/aip-dev/google.aip.dev/edit/master/aip/auth/4114.md">Edit this page</a></li>
+    </ul>
+  </section>
+</aside>
+<section id="aip-main" class="docs-component-main">
+  <section class="section-breadcrumbs">
+  <nav
+    class="glue-breadcrumbs glue-mod-mt-std glue-mod-mb-std"
+    aria-label="You are here."
+  >
+    <ol class="glue-breadcrumbs__list aip-breadcrumbs">
+      <li class="glue-breadcrumbs__item" aria-level="1">
+        <a class="glue-breadcrumbs__link" href="/">
+          API Improvement Proposals
+        </a>
+      </li>
+      
+      <li class="glue-breadcrumbs__item" aria-level="2">
+        <a class="glue-breadcrumbs__link" href="/auth">
+          Auth AIPs
+        </a>
+      </li>
+      
+      <li class="glue-breadcrumbs__item glue-breadcrumbs__item--active"
+          aria-level="3">
+        Device Certificate Authentication via Mutual TLS
+      </li>
+    </ol>
+  </nav>
+</section>
+  
+  <h4 class="aip-number">AIP-4114</h4>
+  <h1 id="device-certificate-authentication-via-mutual-tls">Device Certificate Authentication via Mutual TLS</h1>
+<p>Mutual TLS (a.k.a mTLS) authentication enables authentication of both client and
+server identities in a TLS handshake and provides the foundation for Device
+Certificate Authentication for Context Aware Access for GCP enterprise
+customers. With Device Certificate Authentication, the server takes into account
+the client certificate in the transport layer when making authorization
+decisions. The use of a client certificate provides a stronger indication of the
+access originating from a trusted device. This allows enterprise customers to
+restrict access from untrusted devices.</p>
+<p><strong>Note:</strong> Because this AIP describes guidance and requirements in a
+language-neutral way, it uses generic terminology which may be imprecise or
+inappropriate in certain languages or environments.</p>
+<h2 id="guidance">Guidance</h2>
+<p>This section describes the general guidance of supporting Device Certificate
+Authentication (a.k.a. DCA) via mTLS.</p>
+<h3 id="application-default-credentials-for-dca">Application Default Credentials for DCA</h3>
+<p>Users <strong>should</strong> enable DCA through <a href="https://google.aip.dev/auth/4110">ADC</a> instead of manual configuration via
+client options.</p>
+<p>There are two aspects of ADC for DCA. The first is the automatic procurement of
+a device certificate. The second is the automatic switching of the service
+endpoint to the mTLS version of the service endpoint. Clients <strong>must</strong> support
+both of these aspects when supporting ADC for DCA.</p>
+<h3 id="expected-behavior">Expected Behavior</h3>
+<p>Client support for DCA <strong>must</strong> give priority to user overrides specified via
+client options. The following decision tree <strong>should</strong> be used:</p>
+<ol>
+<li>If user specifies both device certificate and endpoint override via client
+    options, use them as is.</li>
+<li>If user does not specify device certificate, attempt to procure and use
+    a default device certificate.</li>
+<li>If user does not specify endpoint override, use the default mTLS endpoint if
+    a device certificate is available and the default regular endpoint otherwise.</li>
+</ol>
+<p>Implications of the above logic:</p>
+<ol>
+<li>If user specifies a non-mTLS endpoint override but a device certificate is
+    available, pass along the certificate anyway and let the server decide what
+    to do.</li>
+<li>If user specifies an mTLS endpoint override but device certificate is not
+    available, do not fail-fast, but let server return error when connecting.</li>
+</ol>
+<p>The above behavior avoids introducing client-side logic that parses whether the
+endpoint override is an mTLS url, since the url pattern may change at anytime.</p>
+<h3 id="obtaining-the-default-mtls-endpoint">Obtaining the Default mTLS Endpoint</h3>
+<p>The default mTLS endpoint for a service <strong>should</strong> be read from the Discovery
+Document field <strong>"mtlsRootUrl"</strong> instead of generated via regex patterns.</p>
+<h3 id="obtaining-the-default-device-certificate">Obtaining the Default Device Certificate</h3>
+<p>The default device certificate <strong>should</strong> be procured using the
+<a href="https://cloud.google.com/endpoint-verification/docs/overview">EndpointVerification</a> workflow, which fetches the certificate from a
+platform-specific credential store (ex. KeyChain in macOS) via a native helper.</p>
+<p>Exporting the certificate via the native helper involves executing a <strong>"cert
+provider command"</strong> specified in a well-known gcloud metadata file of the
+following format:</p>
+<div class="highlight language-json"><pre><span></span><code><span class="p">{</span>
+   <span class="nt">&quot;version&quot;</span><span class="p">:</span> <span class="mi">1</span>
+   <span class="nt">&quot;min_cloud_sdk_version&quot;</span><span class="p">:</span> <span class="nt">&quot;240.0.0&quot;</span>
+   <span class="nt">&quot;has_client_cert&quot;</span><span class="p">:</span> <span class="kc">true</span>
+   <span class="nt">&quot;endpoint_verification_error&quot;</span><span class="p">:</span> <span class="nt">&quot;&quot;</span>
+   <span class="nt">&quot;cert_provider_command&quot;</span><span class="p">:</span> <span class="s2">&quot;[absolute_path_to_provider_command] --fetch_client_cert&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>For Linux and macOS platforms, the above metadata file is located at
+<strong>"~/.secureConnect/context_aware_metadata.json"</strong>.</p>
+<p>The cert provider command will print the certificate to stdout, which will be in
+the form of an X.509 cert followed immediately by the private key:</p>
+<pre><code>-----BEGIN CERTIFICATE-----
+Common Name: Google Endpoint Verification
+Valid From: November 10, 2019
+Valid To: November 10, 2020
+Serial Number: 4921083229008411918 (0x444b331faf2dbd0e)
+...
+-----END CERTIFICATE-----
+-----BEGIN PRIVATE KEY-----
+...
+-----END PRIVATE KEY-----
+</code></pre>
+<h3 id="environment-variables">Environment Variables</h3>
+<p>There are situations where the ADC for DCA behavior needs to be modified, such
+as for integration testing, or for failsafe. To accomodate those scenarios, the
+following environment variables <strong>should</strong> be supported.</p>
+<p><strong>GOOGLE_API_USE_MTLS_ENDPOINT</strong>: If <strong>"always"</strong>, always use mTLS endpoint. If
+<strong>"never"</strong>, always use regular endpoint. If <strong>"auto"</strong>, use the default
+behavior, which is to use the mTLS endpoint if a device certificate is
+available. The default value of this environment variable will be "auto".</p>
+<p><strong>GOOGLE_API_USE_CLIENT_CERTIFICATE</strong>: If <strong>"true"</strong>, device certificate
+authentication will be supported as described in the general guidance. If
+<strong>"false"</strong>, the device certificate <strong>must</strong> not be used, even if specified by
+the user. For now, the default value will be "false", since mTLS support is not
+yet fully adopted by all services. Users who wish to enable DCA feature <strong>must</strong>
+explicitly set this environment variable to "true". In the future, the default
+value will be "true' to allow a more secure connection to be established
+whenever possible.</p>
+<!-- prettier-ignore-start -->
+<!-- prettier-ignore-end -->
+  <footer>
+  Except as otherwise noted, the content of this page is licensed under the
+  <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons
+  Attribution 4.0 License</a>, and code samples are licensed under the
+  <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a>.
+  <span class="no-print">For details, see <a href="/licensing">content
+  licensing</a>.</span>
+</footer>
+</section>
+
+        </section>
+      </main>
+      
+    </div>
+    <script src="//www.gstatic.com/external_hosted/hammerjs/v2_0_2/hammer.min.js"></script>
+    <script src="//www.gstatic.com/glue/v22_1/glue-vanilla.min.js"></script>
+    <script type="text/javascript">
+      const headerElement = document.querySelector('.glue-header');
+      if (headerElement) {
+        new window.glue.ui.header.Header(headerElement);
+      }
+    </script>
+  </body>
+</html>
